@@ -356,19 +356,6 @@
     const animGroup = new THREE.Group();
     animEnv.add(animGroup);
 
-    const SHOW_ANIM_PIVOT_MARKER = true;
-    const animPivotMarker = new THREE.Group();
-    animPivotMarker.name = "animPivotMarker";
-    animPivotMarker.visible = false;
-    animPivotMarker.add(
-      new THREE.Mesh(
-        new THREE.SphereGeometry(4, 20, 20),
-        new THREE.MeshBasicMaterial({ color: 0xf472b6, depthTest: false })
-      )
-    );
-    animPivotMarker.add(new THREE.AxesHelper(16));
-    scene.add(animPivotMarker);
-
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
     let pointerDown = null;
@@ -480,15 +467,6 @@
       return phaseDurationMs(phaseId) / parts.length;
     }
 
-    function syncAnimPivotMarker() {
-      if (!SHOW_ANIM_PIVOT_MARKER) {
-        animPivotMarker.visible = false;
-        return;
-      }
-      animPivotMarker.position.copy(state.animCamera.pivot);
-      animPivotMarker.visible = state.mode === "animate";
-    }
-
     function initAnimCamera() {
       state.animCamera.pivot.copy(computeAnimCameraPivot());
       state.animCamera.angle = 0;
@@ -504,7 +482,6 @@
         pivot.z + zOffset
       );
       camera.lookAt(pivot);
-      syncAnimPivotMarker();
     }
 
     function tickAnimCamera(delta) {
@@ -1015,7 +992,6 @@
         modelEnv.visible = true;
         animEnv.visible = false;
         restoreModelCamera();
-        syncAnimPivotMarker();
       }
       refreshUI();
     }
