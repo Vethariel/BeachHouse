@@ -3,6 +3,9 @@
 
 Preserves manually assigned fields (id, category, phase, visible, notes)
 when re-syncing after OBJ updates.
+
+Scale (no geometry rescale): 1 model unit = 0.1 m real.
+Example: PIL-002 height 73 model units = 7.3 m.
 """
 
 from __future__ import annotations
@@ -18,6 +21,15 @@ CATEGORIES_PATH = ROOT / "catalog" / "categories.json"
 PARTS_PATH = ROOT / "catalog" / "parts.json"
 
 MANUAL_FIELDS = ("id", "category", "phase", "visible", "notes")
+METERS_PER_MODEL_UNIT = 0.1
+
+
+def model_to_meters(value: float) -> float:
+    return value * METERS_PER_MODEL_UNIT
+
+
+def meters_to_model(value: float) -> float:
+    return value / METERS_PER_MODEL_UNIT
 
 
 def parse_obj(path: Path) -> list[dict]:
@@ -167,6 +179,7 @@ def build_catalog() -> dict:
         "version": 1,
         "source_obj": "tinker.obj",
         "source_mtl": "obj.mtl",
+        "units": categories_meta.get("units", {}),
         "material_colors": material_colors,
         "phases": categories_meta.get("phases", []),
         "categories": categories_meta.get("categories", []),
