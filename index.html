@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BeachHouse — Visualizador</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --border: #2d3a4f;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      grid-template-rows: 1fr;
+    }
+    aside {
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    header {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 { font-size: 1rem; font-weight: 600; }
+    header p { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+    .controls { padding: 12px 16px; border-bottom: 1px solid var(--border); display: grid; gap: 10px; }
+    .mode-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .mode-toggle button, .row button, .toolbar button, .parts-list-header button {
+      background: #243044;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+    .mode-toggle button.active, .toolbar button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    label { font-size: 0.75rem; color: var(--muted); display: block; margin-bottom: 4px; }
+    input[type="range"] { width: 100%; }
+    .row { display: flex; gap: 8px; align-items: center; }
+    .phase-name { font-size: 0.85rem; min-height: 1.2em; }
+    .stats { font-size: 0.75rem; color: var(--muted); padding: 0 16px 8px; }
+    .section-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0 16px 6px;
+    }
+    .category-list {
+      max-height: 220px;
+      overflow: auto;
+      padding: 0 8px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-item {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      margin-bottom: 2px;
+    }
+    .category-item:hover { background: #243044; }
+    .category-item.active {
+      background: #2a4060;
+      outline: 1px solid var(--accent);
+    }
+    .category-count {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-family: ui-monospace, monospace;
+    }
+    .parts-list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px 4px;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .parts-list {
+      flex: 1;
+      overflow: auto;
+      padding: 8px;
+    }
+    .part-item {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.78rem;
+    }
+    .part-item:hover { background: #243044; }
+    .part-item.selected { background: #2a4060; outline: 1px solid var(--accent); }
+    .part-item.hidden-part { opacity: 0.35; }
+    .part-item.dimmed { opacity: 0.45; }
+    .part-item.category-match { outline: 1px solid rgba(147, 197, 253, 0.45); }
+    .swatch { width: 12px; height: 12px; border-radius: 2px; }
+    .part-id { font-family: ui-monospace, monospace; font-weight: 600; }
+    .part-meta { color: var(--muted); font-size: 0.7rem; }
+    #viewport {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+    }
+    #canvas-host {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #canvas-host canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .toolbar {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+    .loading {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(15,20,25,0.8);
+      z-index: 20;
+    }
+    .selection-panel {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(26, 35, 50, 0.96);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 16px;
+      z-index: 10;
+      min-width: 220px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .selection-panel[hidden] { display: none; }
+    .selection-panel .selection-kicker {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .selection-panel .selection-id {
+      font-family: ui-monospace, monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 6px;
+    }
+    .selection-panel .selection-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <header>
+      <h1>BeachHouse</h1>
+      <p>Visualizador OBJ + catálogo semántico</p>
+    </header>
+    <div class="controls">
+      <div class="mode-toggle">
+        <button id="btn-model" class="active">Modelado</button>
+        <button id="btn-animate">Animación</button>
+      </div>
+      <div id="animation-controls" hidden>
+        <label>Fase de construcción</label>
+        <input id="phase-slider" type="range" min="0" max="8" value="0" step="1" />
+        <div class="phase-name" id="phase-label">Cimentación</div>
+        <div class="row">
+          <button id="btn-play">▶ Reproducir</button>
+          <button id="btn-reset">↺ Reiniciar</button>
+        </div>
+      </div>
+      <div id="model-controls">
+        <p class="section-label">Categorías</p>
+        <div class="category-list" id="category-list"></div>
+      </div>
+      <p class="stats">Clic en pieza para seleccionar · clic en categoría para revisar clasificación.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="parts-list-header">
+      <span id="parts-list-title">Piezas</span>
+      <button id="btn-clear-category" hidden>Limpiar filtro</button>
+    </div>
+    <div class="parts-list" id="parts-list"></div>
+  </aside>
+  <div id="viewport">
+    <div id="canvas-host"></div>
+    <div class="toolbar">
+      <button id="btn-fit">Encuadrar</button>
+    </div>
+    <div id="selection-panel" class="selection-panel" hidden>
+      <div class="selection-kicker">Seleccionado</div>
+      <div class="selection-id" id="selection-id"></div>
+      <div class="selection-meta" id="selection-meta"></div>
+    </div>
+    <div class="loading" id="loading">Cargando modelo…</div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
+    import { MTLLoader } from "three/addons/loaders/MTLLoader.js";
+
+    const HIGHLIGHT_COLOR = 0x3b82f6;
+    const HIGHLIGHT_EMISSIVE = 0x2563eb;
+    const DEFAULT_PHASE_DURATION_MS = 3000;
+
+    const state = {
+      mode: "model",
+      catalog: null,
+      partsByObjRef: new Map(),
+      partsByGroup: new Map(),
+      meshesByObjRef: new Map(),
+      animMeshesByObjRef: new Map(),
+      selectedObjRef: null,
+      selectedCategory: null,
+      categoryCounts: new Map(),
+      maxPhase: 0,
+      hasPhases: false,
+      playing: false,
+      playTimer: null,
+      phasePartsMap: new Map(),
+      phaseDefs: new Map(),
+      anim: {
+        phase: 0,
+        step: 0,
+        falling: null,
+        playing: false,
+        pauseUntil: 0,
+        previewAllInPhase: false,
+      },
+      modelCamera: null,
+      animCamera: {
+        pivot: new THREE.Vector3(),
+        radius: 158,
+        zOffset: 6,
+        pivotPartId: "PIL-013",
+        pivotZOffset: -5,
+        angle: 0,
+        speed: 0.28,
+      },
+      animFallHeight: 120,
+    };
+
+    const els = {
+      btnModel: document.getElementById("btn-model"),
+      btnAnimate: document.getElementById("btn-animate"),
+      animationControls: document.getElementById("animation-controls"),
+      phaseSlider: document.getElementById("phase-slider"),
+      phaseLabel: document.getElementById("phase-label"),
+      btnPlay: document.getElementById("btn-play"),
+      btnReset: document.getElementById("btn-reset"),
+      modelControls: document.getElementById("model-controls"),
+      categoryList: document.getElementById("category-list"),
+      btnClearCategory: document.getElementById("btn-clear-category"),
+      partsListTitle: document.getElementById("parts-list-title"),
+      stats: document.getElementById("stats"),
+      partsList: document.getElementById("parts-list"),
+      loading: document.getElementById("loading"),
+      btnFit: document.getElementById("btn-fit"),
+      canvasHost: document.getElementById("canvas-host"),
+      selectionPanel: document.getElementById("selection-panel"),
+      selectionId: document.getElementById("selection-id"),
+      selectionMeta: document.getElementById("selection-meta"),
+    };
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0f1419);
+    const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 2000);
+    camera.up.set(0, 0, 1);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    els.canvasHost.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.target.set(0, 0, 0);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.9);
+    dir.position.set(60, -40, 100);
+    scene.add(dir);
+    const fill = new THREE.DirectionalLight(0xffffff, 0.35);
+    fill.position.set(-80, 60, 40);
+    scene.add(fill);
+
+    const grid = new THREE.GridHelper(140, 28, 0x334155, 0x1e293b);
+    grid.rotation.x = Math.PI / 2;
+    grid.position.z = 0;
+
+    const modelEnv = new THREE.Group();
+    modelEnv.name = "modelEnv";
+    modelEnv.add(grid);
+    scene.add(modelEnv);
+
+    const animEnv = new THREE.Group();
+    animEnv.name = "animEnv";
+    animEnv.visible = false;
+    scene.add(animEnv);
+
+    const modelGroup = new THREE.Group();
+    modelEnv.add(modelGroup);
+
+    const animGroup = new THREE.Group();
+    animEnv.add(animGroup);
+
+    const SHOW_ANIM_PIVOT_MARKER = true;
+    const animPivotMarker = new THREE.Group();
+    animPivotMarker.name = "animPivotMarker";
+    animPivotMarker.visible = false;
+    animPivotMarker.add(
+      new THREE.Mesh(
+        new THREE.SphereGeometry(4, 20, 20),
+        new THREE.MeshBasicMaterial({ color: 0xf472b6, depthTest: false })
+      )
+    );
+    animPivotMarker.add(new THREE.AxesHelper(16));
+    scene.add(animPivotMarker);
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let pointerDown = null;
+
+    function resize() {
+      const w = els.canvasHost.clientWidth;
+      const h = els.canvasHost.clientHeight;
+      if (!w || !h) return;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+    }
+    window.addEventListener("resize", resize);
+    new ResizeObserver(resize).observe(els.canvasHost);
+    requestAnimationFrame(resize);
+
+    function catalogBounds() {
+      const box = new THREE.Box3();
+      if (!state.catalog?.parts?.length) return box;
+      for (const part of state.catalog.parts) {
+        if (part.bounds) {
+          box.expandByPoint(new THREE.Vector3(...part.bounds.min));
+          box.expandByPoint(new THREE.Vector3(...part.bounds.max));
+          continue;
+        }
+        const [cx, cy, cz] = part.center;
+        const [sx, sy, sz] = part.size;
+        box.expandByPoint(new THREE.Vector3(cx - sx / 2, cy - sy / 2, cz - sz / 2));
+        box.expandByPoint(new THREE.Vector3(cx + sx / 2, cy + sy / 2, cz + sz / 2));
+      }
+      return box;
+    }
+
+    function fitCamera() {
+      let box = new THREE.Box3().setFromObject(modelGroup);
+      if (box.isEmpty()) box = catalogBounds();
+      if (box.isEmpty()) return;
+
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const dist = maxDim * 1.6;
+
+      camera.up.set(0, 0, 1);
+      camera.position.set(
+        center.x + dist * 0.72,
+        center.y - dist * 0.62,
+        center.z + dist * 0.42
+      );
+      controls.target.copy(center);
+      controls.update();
+      grid.position.set(center.x, center.y, 0);
+      saveModelCamera();
+    }
+
+    function saveModelCamera() {
+      state.modelCamera = {
+        position: camera.position.clone(),
+        target: controls.target.clone(),
+      };
+    }
+
+    function restoreModelCamera() {
+      if (!state.modelCamera) return;
+      camera.position.copy(state.modelCamera.position);
+      controls.target.copy(state.modelCamera.target);
+      controls.update();
+    }
+
+    function computeAnimCameraPivot() {
+      let pivotX;
+      let pivotY;
+      const pivotPart = state.catalog?.parts?.find(
+        (part) => part.id === state.animCamera.pivotPartId
+      );
+      if (pivotPart?.center) {
+        pivotX = pivotPart.center[0];
+        pivotY = pivotPart.center[1];
+      } else {
+        let box = new THREE.Box3().setFromObject(modelGroup);
+        if (box.isEmpty()) box = catalogBounds();
+        const center = box.getCenter(new THREE.Vector3());
+        pivotX = center.x;
+        pivotY = center.y;
+      }
+
+      let pillarHeight = 73;
+      for (const part of state.catalog?.parts || []) {
+        if (part.category === "pillar" && part.size?.[2]) {
+          pillarHeight = Math.max(pillarHeight, part.size[2]);
+        }
+      }
+
+      return new THREE.Vector3(
+        pivotX,
+        pivotY,
+        pillarHeight / 2 + state.animCamera.pivotZOffset
+      );
+    }
+
+    function phaseDurationMs(phaseId) {
+      const def = phaseDef(phaseId);
+      return def?.phase_duration_ms ?? DEFAULT_PHASE_DURATION_MS;
+    }
+
+    function phaseElementDuration(phaseId) {
+      const parts = state.phasePartsMap.get(phaseId) || [];
+      if (!parts.length) return DEFAULT_PHASE_DURATION_MS;
+      return phaseDurationMs(phaseId) / parts.length;
+    }
+
+    function syncAnimPivotMarker() {
+      if (!SHOW_ANIM_PIVOT_MARKER) {
+        animPivotMarker.visible = false;
+        return;
+      }
+      animPivotMarker.position.copy(state.animCamera.pivot);
+      animPivotMarker.visible = state.mode === "animate";
+    }
+
+    function initAnimCamera() {
+      state.animCamera.pivot.copy(computeAnimCameraPivot());
+      state.animCamera.angle = 0;
+      applyAnimCameraPosition();
+    }
+
+    function applyAnimCameraPosition() {
+      const { pivot, radius, zOffset, angle } = state.animCamera;
+      camera.up.set(0, 0, 1);
+      camera.position.set(
+        pivot.x + radius * Math.cos(angle),
+        pivot.y + radius * Math.sin(angle),
+        pivot.z + zOffset
+      );
+      camera.lookAt(pivot);
+      syncAnimPivotMarker();
+    }
+
+    function tickAnimCamera(delta) {
+      if (state.mode !== "animate") return;
+      state.animCamera.angle += state.animCamera.speed * delta;
+      applyAnimCameraPosition();
+    }
+
+    function partLabel(part) {
+      return part.id || part.obj_ref;
+    }
+
+    function categoryDef(key) {
+      return state.catalog.categories?.find((cat) => cat.key === key);
+    }
+
+    function categoryColor(key) {
+      if (key === "__none__") {
+        return state.catalog.category_colors?.__none__ || "#64748b";
+      }
+      return state.catalog.category_colors?.[key] || categoryDef(key)?.color || "#8b9cb3";
+    }
+
+    function partMatchesCategory(part) {
+      if (!state.selectedCategory) return true;
+      if (state.selectedCategory === "__none__") return !part.category;
+      return part.category === state.selectedCategory;
+    }
+
+    function buildCategoryCounts() {
+      state.categoryCounts.clear();
+      for (const part of state.catalog.parts) {
+        const key = part.category || "__none__";
+        state.categoryCounts.set(key, (state.categoryCounts.get(key) || 0) + 1);
+      }
+    }
+
+    function renderCategoryList() {
+      els.categoryList.innerHTML = "";
+      const categories = state.catalog.categories || [];
+      for (const cat of categories) {
+        const count = state.categoryCounts.get(cat.key) || 0;
+        const item = document.createElement("div");
+        item.className = "category-item" +
+          (state.selectedCategory === cat.key ? " active" : "");
+        item.innerHTML = `
+          <span class="swatch" style="background:${cat.color}"></span>
+          <span>${cat.label}</span>
+          <span class="category-count">${count}</span>`;
+        item.onclick = () => selectCategory(cat.key);
+        els.categoryList.appendChild(item);
+      }
+    }
+
+    function selectCategory(key) {
+      state.selectedCategory = state.selectedCategory === key ? null : key;
+      state.selectedObjRef = null;
+      updateVisibility();
+    }
+
+    function clearCategoryFilter() {
+      state.selectedCategory = null;
+      updateVisibility();
+    }
+
+    function partColor(part) {
+      if (part.category && state.catalog.category_colors?.[part.category]) {
+        return state.catalog.category_colors[part.category];
+      }
+      if (part.material && state.catalog.material_colors?.[part.material]) {
+        return state.catalog.material_colors[part.material];
+      }
+      return "#8b9cb3";
+    }
+
+    function removeOutline(mesh) {
+      const outline = mesh.userData.outline;
+      if (!outline) return;
+      mesh.remove(outline);
+      outline.geometry.dispose();
+      outline.material.dispose();
+      delete mesh.userData.outline;
+    }
+
+    function applyModelMeshStyle(mesh, part, visible) {
+      mesh.visible = visible;
+      const isSelected = state.selectedObjRef === part.obj_ref;
+      const categoryActive = state.selectedCategory != null;
+      const inCategory = categoryActive && partMatchesCategory(part);
+
+      removeOutline(mesh);
+
+      mesh.traverse((child) => {
+        if (!child.isMesh) return;
+        if (!child.userData.baseMaterial) {
+          child.userData.baseMaterial = child.material;
+        }
+
+        const mat = child.userData.baseMaterial.clone();
+        mat.side = THREE.DoubleSide;
+
+        if (!visible) {
+          mat.transparent = true;
+          mat.opacity = 0.15;
+        } else if (categoryActive) {
+          if (inCategory) {
+            const colorKey = part.category || "__none__";
+            const color = new THREE.Color(categoryColor(colorKey));
+            mat.color = color;
+            mat.emissive = color.clone();
+            mat.emissiveIntensity = isSelected ? 0.65 : 0.42;
+            mat.opacity = 1;
+          } else {
+            mat.transparent = true;
+            mat.opacity = 0.1;
+          }
+        } else if (isSelected) {
+          mat.emissive = new THREE.Color(HIGHLIGHT_EMISSIVE);
+          mat.emissiveIntensity = 0.55;
+          mat.opacity = 1;
+        } else {
+          mat.opacity = 1;
+        }
+
+        mat.transparent = mat.opacity < 1;
+        child.material = mat;
+      });
+
+      if (visible && mesh.geometry && (inCategory || isSelected)) {
+        const outlineColor = inCategory
+          ? new THREE.Color(categoryColor(part.category || "__none__")).getHex()
+          : HIGHLIGHT_COLOR;
+        const outline = new THREE.LineSegments(
+          new THREE.EdgesGeometry(mesh.geometry),
+          new THREE.LineBasicMaterial({ color: outlineColor, transparent: true, opacity: 1 })
+        );
+        mesh.add(outline);
+        mesh.userData.outline = outline;
+      }
+    }
+
+    function buildAnimEnvironment() {
+      animGroup.clear();
+      state.animMeshesByObjRef.clear();
+      const def = phaseDef(0) || {};
+      const fallHeight = def.fall_height || state.animFallHeight;
+      state.animFallHeight = fallHeight;
+
+      for (const [objRef, modelMesh] of state.meshesByObjRef) {
+        const animMesh = modelMesh.clone();
+        animMesh.material = modelMesh.material.clone();
+        animMesh.material.side = THREE.DoubleSide;
+        const home = modelMesh.userData.homePosition.clone();
+        const sky = home.clone();
+        sky.z += fallHeight;
+        animMesh.position.copy(sky);
+        animMesh.visible = false;
+        animMesh.userData.objRef = objRef;
+        animGroup.add(animMesh);
+        state.animMeshesByObjRef.set(objRef, { mesh: animMesh, home, sky });
+      }
+    }
+
+    function hideAllAnimMeshes() {
+      for (const entry of state.animMeshesByObjRef.values()) {
+        entry.mesh.position.copy(entry.sky);
+        entry.mesh.visible = false;
+      }
+    }
+
+    function landAnimMesh(objRef) {
+      const entry = state.animMeshesByObjRef.get(objRef);
+      if (!entry) return;
+      entry.mesh.position.copy(entry.home);
+      entry.mesh.visible = true;
+    }
+
+    function teleportAnimMeshToSky(objRef) {
+      const entry = state.animMeshesByObjRef.get(objRef);
+      if (!entry) return;
+      entry.mesh.position.copy(entry.sky);
+      entry.mesh.visible = true;
+    }
+
+    function syncAnimPreview() {
+      for (const part of state.catalog.parts) {
+        const entry = state.animMeshesByObjRef.get(part.obj_ref);
+        if (!entry) continue;
+        const st = animationPartState(part);
+        if (st === "landed") {
+          entry.mesh.position.copy(entry.home);
+          entry.mesh.visible = true;
+        } else if (st === "falling") {
+          entry.mesh.visible = true;
+        } else {
+          entry.mesh.position.copy(entry.sky);
+          entry.mesh.visible = false;
+        }
+      }
+    }
+
+    function countAnimVisible() {
+      let n = 0;
+      for (const entry of state.animMeshesByObjRef.values()) {
+        if (entry.mesh.visible) n += 1;
+      }
+      return n;
+    }
+
+    function buildPhaseMap() {
+      state.phasePartsMap.clear();
+      state.phaseDefs.clear();
+      for (const def of state.catalog.phases || []) {
+        state.phaseDefs.set(def.id, def);
+      }
+      for (const part of state.catalog.parts) {
+        if (part.phase == null) continue;
+        if (!state.phasePartsMap.has(part.phase)) {
+          state.phasePartsMap.set(part.phase, []);
+        }
+        state.phasePartsMap.get(part.phase).push(part);
+      }
+      for (const list of state.phasePartsMap.values()) {
+        list.sort((a, b) =>
+          a.obj_ref.localeCompare(b.obj_ref, undefined, { numeric: true })
+        );
+      }
+      state.hasPhases = state.phasePartsMap.size > 0;
+      state.maxPhase = state.hasPhases
+        ? Math.max(...state.phasePartsMap.keys())
+        : 0;
+    }
+
+    function phaseDef(phaseId) {
+      return state.phaseDefs.get(phaseId);
+    }
+
+    function animationPartState(part) {
+      if (part.phase == null) return "hidden";
+      if (part.phase < state.anim.phase) return "landed";
+      if (part.phase > state.anim.phase) return "hidden";
+
+      const parts = state.phasePartsMap.get(part.phase) || [];
+      const idx = parts.findIndex((p) => p.obj_ref === part.obj_ref);
+      if (idx < 0) return "hidden";
+      if (state.anim.falling?.objRef === part.obj_ref) return "falling";
+      if (state.anim.previewAllInPhase) return "landed";
+      if (idx < state.anim.step) return "landed";
+      return "hidden";
+    }
+
+    function resetAnimation() {
+      stopPlay();
+      state.anim.phase = 0;
+      state.anim.step = 0;
+      state.anim.falling = null;
+      state.anim.pauseUntil = 0;
+      state.anim.previewAllInPhase = false;
+      els.phaseSlider.value = "0";
+      hideAllAnimMeshes();
+      updatePhaseLabel();
+      refreshUI();
+    }
+
+    function startNextFall() {
+      if (!state.anim.playing) return;
+
+      const parts = state.phasePartsMap.get(state.anim.phase) || [];
+      if (state.anim.step >= parts.length) {
+        if (state.anim.phase >= state.maxPhase) {
+          stopPlay();
+          return;
+        }
+        state.anim.phase += 1;
+        state.anim.step = 0;
+        els.phaseSlider.value = String(state.anim.phase);
+        startNextFall();
+        return;
+      }
+
+      const part = parts[state.anim.step];
+      const entry = state.animMeshesByObjRef.get(part.obj_ref);
+      if (!entry) {
+        state.anim.step += 1;
+        startNextFall();
+        return;
+      }
+
+      const def = phaseDef(state.anim.phase) || {};
+      const animType = def.animation || "instant";
+
+      if (animType === "fall") {
+        const duration = phaseElementDuration(state.anim.phase);
+        teleportAnimMeshToSky(part.obj_ref);
+        state.anim.falling = {
+          objRef: part.obj_ref,
+          startTime: performance.now(),
+          duration,
+          fromZ: entry.sky.z,
+          toZ: entry.home.z,
+        };
+      } else {
+        landAnimMesh(part.obj_ref);
+        state.anim.step += 1;
+        state.anim.pauseUntil = performance.now();
+      }
+
+      updatePhaseLabel();
+      refreshUI({ animOnly: true });
+    }
+
+    function tickAnimation(now) {
+      if (state.mode !== "animate" || !state.anim.playing) return;
+
+      if (state.anim.falling) {
+        const f = state.anim.falling;
+        const entry = state.animMeshesByObjRef.get(f.objRef);
+        const t = Math.min(1, (now - f.startTime) / f.duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        if (entry) entry.mesh.position.z = f.fromZ + (f.toZ - f.fromZ) * eased;
+        if (t >= 1) {
+          if (entry) entry.mesh.position.z = f.toZ;
+          state.anim.falling = null;
+          state.anim.step += 1;
+          state.anim.pauseUntil = now;
+          updatePhaseLabel();
+          refreshUI({ animOnly: true });
+        }
+        return;
+      }
+
+      if (now >= state.anim.pauseUntil) {
+        startNextFall();
+      }
+    }
+
+    function phaseVisible(part) {
+      if (state.mode === "model") {
+        return part.visible !== false;
+      }
+      const animState = animationPartState(part);
+      return animState === "landed" || animState === "falling";
+    }
+
+    function updateModelVisibility() {
+      for (const [objRef, part] of state.partsByObjRef) {
+        const mesh = state.meshesByObjRef.get(objRef);
+        if (!mesh) continue;
+        const visible = part.visible !== false;
+        applyModelMeshStyle(mesh, part, visible);
+      }
+    }
+
+    function refreshUI(options = {}) {
+      if (state.mode === "animate") {
+        if (!options.animOnly) syncAnimPreview();
+        updateStats();
+        if (!options.animOnly) renderPartsList();
+        updateSelectionPanel();
+        return;
+      }
+      renderCategoryList();
+      updateModelVisibility();
+      renderPartsList();
+      updateStats();
+      updateSelectionPanel();
+      els.btnClearCategory.hidden = !state.selectedCategory;
+      if (state.selectedCategory) {
+        const cat = categoryDef(state.selectedCategory);
+        const count = state.categoryCounts.get(state.selectedCategory) || 0;
+        els.partsListTitle.textContent = cat ? `${cat.label} (${count})` : "Piezas";
+      } else {
+        els.partsListTitle.textContent = "Piezas";
+      }
+    }
+
+    function updateVisibility() {
+      refreshUI();
+    }
+
+    function updateSelectionPanel() {
+      if (state.mode === "animate") {
+        els.selectionPanel.hidden = true;
+        return;
+      }
+
+      if (state.selectedObjRef) {
+        const part = state.partsByObjRef.get(state.selectedObjRef);
+        if (!part) {
+          els.selectionPanel.hidden = true;
+          return;
+        }
+        els.selectionPanel.hidden = false;
+        els.selectionId.textContent = partLabel(part);
+        const [sx, sy, sz] = part.size;
+        els.selectionMeta.textContent = [
+          part.obj_ref,
+          part.group || "",
+          part.category ? `categoría: ${part.category}` : "sin categoría",
+          part.phase != null ? `fase ${part.phase}` : "sin fase",
+          `tamaño ${sx}×${sy}×${sz}`,
+        ].filter(Boolean).join(" · ");
+        return;
+      }
+
+      if (state.selectedCategory) {
+        const cat = categoryDef(state.selectedCategory);
+        const count = state.categoryCounts.get(state.selectedCategory) || 0;
+        els.selectionPanel.hidden = false;
+        els.selectionId.textContent = cat?.label || state.selectedCategory;
+        els.selectionMeta.textContent = `${count} piezas en esta categoría · revisa que estén bien clasificadas`;
+        return;
+      }
+
+      els.selectionPanel.hidden = true;
+    }
+
+    function updateStats() {
+      const total = state.catalog.parts.length;
+      const shown = [...state.partsByObjRef.values()].filter(phaseVisible).length;
+      els.stats.textContent = state.mode === "model"
+        ? state.selectedCategory
+          ? `${state.categoryCounts.get(state.selectedCategory) || 0} piezas resaltadas · filtro activo`
+          : `${shown}/${total} piezas · ${state.meshesByObjRef.size} mallas · modo modelado`
+        : state.hasPhases
+          ? state.anim.playing
+            ? `${phaseDef(state.anim.phase)?.label || "Fase " + state.anim.phase} · construyendo…`
+            : `Vista fase ${state.anim.phase}/${state.maxPhase} · ${countAnimVisible()} piezas visibles`
+          : "Sin fases asignadas en el catálogo";
+    }
+
+    function renderPartsList() {
+      const query = state.mode === "animate" ? state.anim.phase : null;
+      els.partsList.innerHTML = "";
+      const sorted = [...state.catalog.parts].sort((a, b) =>
+        a.obj_ref.localeCompare(b.obj_ref, undefined, { numeric: true })
+      );
+      for (const part of sorted) {
+        if (state.selectedCategory && !partMatchesCategory(part)) continue;
+        const visible = phaseVisible(part);
+        const inCategory = state.selectedCategory && partMatchesCategory(part);
+        const meta = [
+          part.obj_ref,
+          part.category ? part.category : "sin categoría",
+          part.phase != null ? `fase ${part.phase}` : "sin fase",
+        ].join(" · ");
+        const item = document.createElement("div");
+        item.className = "part-item" +
+          (part.obj_ref === state.selectedObjRef ? " selected" : "") +
+          (inCategory ? " category-match" : "") +
+          (!visible ? " hidden-part" : "") +
+          (state.selectedCategory && !inCategory ? " dimmed" : "");
+        item.innerHTML = `
+          <span class="swatch" style="background:${partColor(part)}"></span>
+          <span>
+            <div class="part-id">${partLabel(part)}</div>
+            <div class="part-meta">${meta}</div>
+          </span>
+          <span class="part-meta">${part.material || ""}</span>`;
+        item.onclick = () => selectPart(part.obj_ref);
+        if (query !== null && part.phase === query) {
+          item.scrollIntoView({ block: "nearest" });
+        }
+        els.partsList.appendChild(item);
+      }
+    }
+
+    function clearSelection() {
+      state.selectedObjRef = null;
+      updateVisibility();
+    }
+
+    function selectPart(objRef) {
+      state.selectedObjRef = objRef;
+      updateVisibility();
+      const part = state.partsByObjRef.get(objRef);
+      if (part) {
+        const mesh = state.meshesByObjRef.get(objRef);
+        if (mesh) {
+          const c = new THREE.Box3().setFromObject(mesh).getCenter(new THREE.Vector3());
+          controls.target.copy(c);
+        }
+        const item = els.partsList.querySelector(".part-item.selected");
+        item?.scrollIntoView({ block: "nearest" });
+      }
+    }
+
+    function setMode(mode) {
+      state.mode = mode;
+      els.btnModel.classList.toggle("active", mode === "model");
+      els.btnAnimate.classList.toggle("active", mode === "animate");
+      els.animationControls.hidden = mode !== "animate";
+      els.modelControls.hidden = mode !== "model";
+      els.btnFit.hidden = mode === "animate";
+
+      if (mode === "animate") {
+        saveModelCamera();
+        controls.enabled = false;
+        modelEnv.visible = false;
+        animEnv.visible = true;
+        state.selectedCategory = null;
+        state.selectedObjRef = null;
+        initAnimCamera();
+        resetAnimation();
+      } else {
+        stopPlay();
+        controls.enabled = true;
+        modelEnv.visible = true;
+        animEnv.visible = false;
+        restoreModelCamera();
+        syncAnimPivotMarker();
+      }
+      refreshUI();
+    }
+
+    function updatePhaseLabel() {
+      const phase = state.mode === "animate" ? state.anim.phase : Number(els.phaseSlider.value);
+      if (!state.hasPhases) {
+        els.phaseLabel.textContent = "Asigna phase en catalog/parts.json";
+        return;
+      }
+      const def = phaseDef(phase);
+      const label = def?.label || state.catalog.phase_labels?.[String(phase)] || `Fase ${phase}`;
+      const parts = state.phasePartsMap.get(phase) || [];
+      if (state.mode === "animate" && state.anim.playing && parts.length) {
+        const current = Math.min(
+          state.anim.step + (state.anim.falling ? 1 : 0),
+          parts.length
+        );
+        els.phaseLabel.textContent = `${label} · ${current}/${parts.length}`;
+        return;
+      }
+      els.phaseLabel.textContent = parts.length ? `${label} (${parts.length})` : label;
+    }
+
+    async function loadAll() {
+      const catalogResp = await fetch("catalog/parts.json");
+      state.catalog = await catalogResp.json();
+
+      buildCategoryCounts();
+      buildPhaseMap();
+      els.phaseSlider.max = String(state.maxPhase);
+      els.phaseSlider.disabled = !state.hasPhases;
+      els.btnPlay.disabled = !state.hasPhases;
+
+      for (const part of state.catalog.parts) {
+        state.partsByObjRef.set(part.obj_ref, part);
+        if (part.group) {
+          state.partsByGroup.set(part.group, part);
+        }
+      }
+
+      const mtl = await new Promise((resolve, reject) => {
+        new MTLLoader().load("obj.mtl", resolve, undefined, reject);
+      });
+      mtl.preload();
+
+      const obj = await new Promise((resolve, reject) => {
+        new OBJLoader()
+          .setMaterials(mtl)
+          .load("tinker.obj", resolve, undefined, reject);
+      });
+
+      modelGroup.add(obj);
+
+      obj.traverse((child) => {
+        if (!child.isMesh) return;
+
+        // Three.js OBJLoader names meshes after `g` lines, not `o` lines.
+        const part = state.partsByGroup.get(child.name);
+        if (!part) return;
+
+        const objRef = part.obj_ref;
+        child.userData.objRef = objRef;
+        child.userData.homePosition = child.position.clone();
+        child.material.side = THREE.DoubleSide;
+        state.meshesByObjRef.set(objRef, child);
+      });
+
+      if (state.meshesByObjRef.size === 0) {
+        throw new Error("No se encontraron mallas — revisa tinker.obj y catalog/parts.json");
+      }
+
+      buildAnimEnvironment();
+      buildCategoryCounts();
+      els.loading.style.display = "none";
+      resize();
+      fitCamera();
+      if (!state.modelCamera) saveModelCamera();
+      updatePhaseLabel();
+      renderCategoryList();
+      updateVisibility();
+    }
+
+    function stopPlay() {
+      state.anim.playing = false;
+      state.playing = false;
+      els.btnPlay.textContent = "▶ Reproducir";
+    }
+
+    function startPlay() {
+      if (!state.hasPhases) return;
+      if (state.anim.playing) {
+        stopPlay();
+        return;
+      }
+      state.anim.playing = true;
+      state.playing = true;
+      state.anim.previewAllInPhase = false;
+      els.btnPlay.textContent = "⏸ Pausar";
+      if (state.anim.step === 0 && !state.anim.falling && state.anim.phase === 0) {
+        hideAllAnimMeshes();
+      }
+      state.anim.pauseUntil = performance.now();
+      if (!state.anim.falling) startNextFall();
+    }
+
+    els.btnModel.onclick = () => { stopPlay(); setMode("model"); };
+    els.btnAnimate.onclick = () => { setMode("animate"); };
+    els.phaseSlider.oninput = () => {
+      if (state.anim.playing) return;
+      state.anim.phase = Number(els.phaseSlider.value);
+      state.anim.step = 0;
+      state.anim.falling = null;
+      state.anim.previewAllInPhase = true;
+      hideAllAnimMeshes();
+      syncAnimPreview();
+      updatePhaseLabel();
+      refreshUI({ animOnly: true });
+    };
+    els.btnPlay.onclick = startPlay;
+    els.btnReset.onclick = resetAnimation;
+    els.btnClearCategory.onclick = clearCategoryFilter;
+    els.btnFit.onclick = () => {
+      if (state.mode === "model") fitCamera();
+    };
+
+    let lastFrameTime = performance.now();
+    function animateFrame(now) {
+      requestAnimationFrame(animateFrame);
+      const delta = Math.min(0.05, (now - lastFrameTime) / 1000);
+      lastFrameTime = now;
+      tickAnimCamera(delta);
+      tickAnimation(now);
+      if (state.mode === "model") controls.update();
+      renderer.render(scene, camera);
+    }
+    animateFrame();
+    loadAll().catch((err) => {
+      els.loading.textContent = `Error: ${err.message}. Abrí index.html con Live Server (no file://).`;
+      console.error(err);
+    });
+
+    renderer.domElement.addEventListener("pointerdown", (event) => {
+      if (state.mode === "animate") return;
+      pointerDown = { x: event.clientX, y: event.clientY };
+    });
+
+    renderer.domElement.addEventListener("pointerup", (event) => {
+      if (state.mode === "animate") return;
+      if (!pointerDown) return;
+      const dx = event.clientX - pointerDown.x;
+      const dy = event.clientY - pointerDown.y;
+      pointerDown = null;
+      if (Math.hypot(dx, dy) > 6) return;
+
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+      raycaster.setFromCamera(pointer, camera);
+      const meshes = [...state.meshesByObjRef.values()].filter((mesh) => mesh.visible);
+      const hits = raycaster.intersectObjects(meshes, false);
+      if (hits.length) {
+        const objRef = hits[0].object.userData.objRef;
+        if (objRef) selectPart(objRef);
+      } else {
+        clearSelection();
+      }
+    });
+  </script>
+</body>
+</html>

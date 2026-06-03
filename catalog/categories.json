@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "phases": [
+    {
+      "id": 0,
+      "label": "Cimentación",
+      "category": "foundation",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 1,
+      "label": "Pilares",
+      "category": "pillar",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 2,
+      "label": "Vigas principales — P1",
+      "category": "floor_l1_beam",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 3,
+      "label": "Viguetas — P1",
+      "category": "floor_l1_joist",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    }
+  ],
+  "categories": [
+    {
+      "key": "foundation",
+      "label": "Cimentación",
+      "color": "#95212d"
+    },
+    {
+      "key": "pillar",
+      "label": "Pilares",
+      "color": "#e91d2d"
+    },
+    {
+      "key": "floor_l1_beam",
+      "label": "Vigas principales — P1",
+      "color": "#46b749"
+    },
+    {
+      "key": "floor_l1_joist",
+      "label": "Viguetas — P1",
+      "color": "#ffdd1a"
+    },
+    {
+      "key": "floor_l1_wall",
+      "label": "Muros — P1",
+      "color": "#e6c818"
+    },
+    {
+      "key": "floor_l1_frame",
+      "label": "Marcos — P1",
+      "color": "#f5831f"
+    },
+    {
+      "key": "floor_l2_beam",
+      "label": "Vigas / losa — P2",
+      "color": "#2d8a30"
+    },
+    {
+      "key": "floor_l2_wall",
+      "label": "Muros — P2",
+      "color": "#d4b816"
+    },
+    {
+      "key": "floor_l2_frame",
+      "label": "Marcos — P2",
+      "color": "#c86810"
+    },
+    {
+      "key": "roof",
+      "label": "Cubierta",
+      "color": "#6b7280"
+    },
+    {
+      "key": "__none__",
+      "label": "Sin categoría",
+      "color": "#64748b"
+    }
+  ]
+}
