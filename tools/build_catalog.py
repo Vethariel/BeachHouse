@@ -20,7 +20,7 @@ MTL_PATH = ROOT / "obj.mtl"
 CATEGORIES_PATH = ROOT / "catalog" / "categories.json"
 PARTS_PATH = ROOT / "catalog" / "parts.json"
 
-MANUAL_FIELDS = ("id", "category", "phase", "visible", "notes")
+MANUAL_FIELDS = ("id", "category", "phase", "visible", "notes", "temporary")
 METERS_PER_MODEL_UNIT = 0.1
 
 

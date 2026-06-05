@@ -1,0 +1,18 @@
+{
+  "id": 12,
+  "slug": "despu-s-demo-geometr-as-temporales-planos-vol-me",
+  "created_at": "2026-06-04T23:13:21+00:00",
+  "message": "después: demo geometrías temporales (planos, volúmenes, booleanos)",
+  "auto": false,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 424,
+    "with_category": 424,
+    "with_phase": 410
+  }
+}

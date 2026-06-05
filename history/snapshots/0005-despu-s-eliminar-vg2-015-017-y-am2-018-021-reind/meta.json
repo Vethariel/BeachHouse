@@ -1,0 +1,18 @@
+{
+  "id": 5,
+  "slug": "despu-s-eliminar-vg2-015-017-y-am2-018-021-reind",
+  "created_at": "2026-06-03T22:46:28+00:00",
+  "message": "después: eliminar VG2-015..017 y AM2-018..021 (reindex fix)",
+  "auto": false,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 410,
+    "with_category": 410,
+    "with_phase": 410
+  }
+}

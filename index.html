@@ -586,6 +586,27 @@
         if (!visible) {
           mat.transparent = true;
           mat.opacity = 0.15;
+        } else if (part.temporary) {
+          mat.side = THREE.DoubleSide;
+          mat.transparent = true;
+          mat.opacity = part.notes?.startsWith("demo:plane") ? 0.45 : 0.85;
+          if (part.notes?.startsWith("demo:plane")) {
+            mat.color = new THREE.Color("#38bdf8");
+            mat.emissive = new THREE.Color("#0ea5e9");
+            mat.emissiveIntensity = isSelected ? 0.5 : 0.25;
+          } else if (part.notes?.startsWith("demo:boolean")) {
+            mat.color = new THREE.Color("#46b749");
+            mat.emissive = new THREE.Color("#2d8a30");
+            mat.emissiveIntensity = isSelected ? 0.45 : 0.2;
+          } else if (part.notes?.startsWith("demo:extend")) {
+            mat.color = new THREE.Color("#a855f7");
+            mat.emissive = new THREE.Color("#7c3aed");
+            mat.emissiveIntensity = isSelected ? 0.45 : 0.2;
+          } else {
+            mat.color = new THREE.Color("#f59e0b");
+            mat.emissive = new THREE.Color("#d97706");
+            mat.emissiveIntensity = isSelected ? 0.45 : 0.2;
+          }
         } else if (categoryActive) {
           if (inCategory) {
             const colorKey = part.category || "__none__";

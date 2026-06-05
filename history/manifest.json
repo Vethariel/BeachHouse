@@ -18,7 +18,277 @@
         "with_category": 417,
         "with_phase": 417
       }
+    },
+    {
+      "id": 2,
+      "slug": "antes-eliminar-vg2-015-017-y-am2-018-021",
+      "created_at": "2026-06-03T22:44:48+00:00",
+      "message": "antes: eliminar VG2-015..017 y AM2-018..021",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 417,
+        "with_category": 417,
+        "with_phase": 417
+      }
+    },
+    {
+      "id": 3,
+      "slug": "despu-s-eliminar-vg2-015-017-y-am2-018-021",
+      "created_at": "2026-06-03T22:44:48+00:00",
+      "message": "después: eliminar VG2-015..017 y AM2-018..021",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 4,
+      "slug": "antes-eliminar-vg2-015-017-y-am2-018-021-reindex",
+      "created_at": "2026-06-03T22:46:28+00:00",
+      "message": "antes: eliminar VG2-015..017 y AM2-018..021 (reindex fix)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 417,
+        "with_category": 417,
+        "with_phase": 417
+      }
+    },
+    {
+      "id": 5,
+      "slug": "despu-s-eliminar-vg2-015-017-y-am2-018-021-reind",
+      "created_at": "2026-06-03T22:46:28+00:00",
+      "message": "después: eliminar VG2-015..017 y AM2-018..021 (reindex fix)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 6,
+      "slug": "antes-entramado-cubierta-con-pendiente",
+      "created_at": "2026-06-03T22:58:09+00:00",
+      "message": "antes: entramado cubierta con pendiente",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 7,
+      "slug": "antes-entramado-cubierta-con-pendiente",
+      "created_at": "2026-06-03T22:58:17+00:00",
+      "message": "antes: entramado cubierta con pendiente",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 8,
+      "slug": "despu-s-entramado-cubierta-con-pendiente",
+      "created_at": "2026-06-03T22:58:18+00:00",
+      "message": "después: entramado cubierta con pendiente",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 451,
+        "with_category": 451,
+        "with_phase": 451
+      }
+    },
+    {
+      "id": 9,
+      "slug": "antes-eliminar-entramado-cubierta-defectuoso",
+      "created_at": "2026-06-04T23:12:08+00:00",
+      "message": "antes: eliminar entramado cubierta defectuoso",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 451,
+        "with_category": 451,
+        "with_phase": 451
+      }
+    },
+    {
+      "id": 10,
+      "slug": "despu-s-eliminar-entramado-cubierta-defectuoso",
+      "created_at": "2026-06-04T23:12:09+00:00",
+      "message": "después: eliminar entramado cubierta defectuoso",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 11,
+      "slug": "antes-demo-geometr-as-temporales-planos-vol-mene",
+      "created_at": "2026-06-04T23:13:21+00:00",
+      "message": "antes: demo geometrías temporales (planos, volúmenes, booleanos)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 12,
+      "slug": "despu-s-demo-geometr-as-temporales-planos-vol-me",
+      "created_at": "2026-06-04T23:13:21+00:00",
+      "message": "después: demo geometrías temporales (planos, volúmenes, booleanos)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 424,
+        "with_category": 424,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 13,
+      "slug": "antes-demo-geometr-as-trimesh-planos-vol-menes-b",
+      "created_at": "2026-06-04T23:29:53+00:00",
+      "message": "antes: demo geometrías trimesh (planos, volúmenes, booleanos)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 14,
+      "slug": "despu-s-demo-geometr-as-trimesh-planos-vol-menes",
+      "created_at": "2026-06-04T23:29:53+00:00",
+      "message": "después: demo geometrías trimesh (planos, volúmenes, booleanos)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 416,
+        "with_category": 416,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 15,
+      "slug": "antes-demo-geometr-as-trimesh-planos-vol-menes-b",
+      "created_at": "2026-06-05T00:08:38+00:00",
+      "message": "antes: demo geometrías trimesh (planos, volúmenes, booleanos)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 410,
+        "with_category": 410,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 16,
+      "slug": "despu-s-demo-geometr-as-trimesh-planos-vol-menes",
+      "created_at": "2026-06-05T00:08:38+00:00",
+      "message": "después: demo geometrías trimesh (planos, volúmenes, booleanos)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 417,
+        "with_category": 417,
+        "with_phase": 410
+      }
     }
   ],
-  "current": 1
+  "current": 16
 }

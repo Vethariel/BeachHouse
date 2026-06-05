@@ -1,0 +1,18 @@
+{
+  "id": 15,
+  "slug": "antes-demo-geometr-as-trimesh-planos-vol-menes-b",
+  "created_at": "2026-06-05T00:08:38+00:00",
+  "message": "antes: demo geometrías trimesh (planos, volúmenes, booleanos)",
+  "auto": true,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 410,
+    "with_category": 410,
+    "with_phase": 410
+  }
+}

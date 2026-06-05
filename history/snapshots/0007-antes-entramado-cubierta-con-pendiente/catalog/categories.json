@@ -76,6 +76,14 @@
       "animation": "fall",
       "phase_duration_ms": 3000,
       "fall_height": 120
+    },
+    {
+      "id": 8,
+      "label": "Entramado — cubierta",
+      "category": "roof",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
     }
   ],
   "categories": [
@@ -148,11 +156,6 @@
       "key": "__none__",
       "label": "Sin categoría",
       "color": "#64748b"
-    },
-    {
-      "key": "__temp__",
-      "label": "Temporales",
-      "color": "#38bdf8"
     }
   ]
 }

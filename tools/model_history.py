@@ -4,9 +4,9 @@
 Tracks geometry and catalog files so code-based edits can be reverted.
 Use before/after modeling scripts:
 
-    python3 tools/model_history.py save -m "descripción del cambio"
-    python3 tools/model_history.py list
-    python3 tools/model_history.py restore 3
+    uv run python tools/model_history.py save -m "descripción del cambio"
+    uv run python tools/model_history.py list
+    uv run python tools/model_history.py restore 3
 """
 
 from __future__ import annotations
@@ -177,7 +177,7 @@ def cmd_list(_: argparse.Namespace) -> int:
     snapshots = list_snapshots()
     if not snapshots:
         print("Sin snapshots. Creá uno con:")
-        print('  python3 tools/model_history.py save -m "baseline"')
+        print('  uv run python tools/model_history.py save -m "baseline"')
         return 0
 
     manifest = _load_manifest()

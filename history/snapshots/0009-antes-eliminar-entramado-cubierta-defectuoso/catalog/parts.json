@@ -20,10 +20,7 @@
     "color_9771553": "#951a21",
     "color_16768282": "#ffdd1a",
     "color_16089887": "#f5831f",
-    "color_7035299": "#6b7280",
-    "color_temp_plane": "#1eb3f5",
-    "color_temp_volume": "#f59e0b",
-    "color_temp_result": "#46b749"
+    "color_7035299": "#6b7280"
   },
   "phases": [
     {
@@ -86,6 +83,14 @@
       "id": 7,
       "label": "Amarres — P2",
       "category": "floor_l2_tie",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 8,
+      "label": "Entramado — cubierta",
+      "category": "roof",
       "animation": "fall",
       "phase_duration_ms": 3000,
       "fall_height": 120
@@ -161,11 +166,6 @@
       "key": "__none__",
       "label": "Sin categoría",
       "color": "#64748b"
-    },
-    {
-      "key": "__temp__",
-      "label": "Temporales",
-      "color": "#38bdf8"
     }
   ],
   "phase_labels": {
@@ -176,7 +176,8 @@
     "4": "Amarres — P1",
     "5": "Vigas principales — P2",
     "6": "Viguetas — P2",
-    "7": "Amarres — P2"
+    "7": "Amarres — P2",
+    "8": "Entramado — cubierta"
   },
   "category_colors": {
     "foundation": "#95212d",
@@ -192,15 +193,13 @@
     "floor_l2_wall": "#d4b816",
     "floor_l2_frame": "#c86810",
     "roof": "#6b7280",
-    "__none__": "#64748b",
-    "__temp__": "#38bdf8"
+    "__none__": "#64748b"
   },
   "summary": {
-    "parts": 417,
-    "with_id": 417,
-    "with_category": 417,
-    "with_phase": 410,
-    "temporary": 7
+    "parts": 451,
+    "with_id": 451,
+    "with_category": 451,
+    "with_phase": 451
   },
   "parts": [
     {
@@ -13325,234 +13324,1315 @@
     },
     {
       "obj_ref": "obj_417",
-      "material": "color_temp_plane",
-      "group": "group_417_color_temp_plane",
+      "material": "color_7035299",
+      "group": "group_417_color_7035299",
       "center": [
-        119.0,
-        18.0,
-        52.0
-      ],
-      "size": [
-        12.0,
-        6.0,
-        4.0
-      ],
-      "bounds": {
-        "min": [
-          113.0,
-          15.0,
-          50.0
-        ],
-        "max": [
-          125.0,
-          21.0,
-          54.0
-        ]
-      },
-      "id": "TMP-P01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:plane",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_418",
-      "material": "color_temp_volume",
-      "group": "group_418_color_temp_volume",
-      "center": [
-        120.0,
-        30.0,
-        52.0
+        20.0,
+        0.0,
+        92.28
       ],
       "size": [
         10.0,
-        6.0,
-        4.0
+        1.0,
+        4.55
       ],
       "bounds": {
         "min": [
-          115.0,
-          27.0,
-          50.0
+          15.0,
+          -0.5,
+          90.0
         ],
         "max": [
-          125.0,
-          33.0,
-          54.0
+          25.0,
+          0.5,
+          94.55
         ]
       },
-      "id": "TMP-V01",
-      "category": "__temp__",
-      "phase": null,
+      "id": "RF-001",
+      "category": "roof",
+      "phase": 8,
       "visible": true,
-      "notes": "demo:volume",
-      "temporary": true
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_418",
+      "material": "color_7035299",
+      "group": "group_418_color_7035299",
+      "center": [
+        42.5,
+        0.0,
+        87.65
+      ],
+      "size": [
+        35.0,
+        1.0,
+        9.69
+      ],
+      "bounds": {
+        "min": [
+          25.0,
+          -0.5,
+          82.81
+        ],
+        "max": [
+          60.0,
+          0.5,
+          92.5
+        ]
+      },
+      "id": "RF-002",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
     },
     {
       "obj_ref": "obj_419",
-      "material": "color_temp_volume",
-      "group": "group_419_color_temp_volume",
+      "material": "color_7035299",
+      "group": "group_419_color_7035299",
       "center": [
-        121.0,
-        42.0,
-        53.5
+        68.5,
+        0.0,
+        82.31
       ],
       "size": [
-        12.0,
-        6.0,
-        7.0
+        17.0,
+        1.0,
+        5.99
       ],
       "bounds": {
         "min": [
-          115.0,
-          39.0,
-          50.0
+          60.0,
+          -0.5,
+          79.32
         ],
         "max": [
-          127.0,
-          45.0,
-          57.0
+          77.0,
+          0.5,
+          85.31
         ]
       },
-      "id": "TMP-V02",
-      "category": "__temp__",
-      "phase": null,
+      "id": "RF-003",
+      "category": "roof",
+      "phase": 8,
       "visible": true,
-      "notes": "demo:volume-skew",
-      "temporary": true
+      "notes": ""
     },
     {
       "obj_ref": "obj_420",
-      "material": "color_temp_result",
-      "group": "group_420_color_temp_result",
+      "material": "color_7035299",
+      "group": "group_420_color_7035299",
       "center": [
-        122.0,
-        55.5,
-        53.0
+        87.5,
+        0.0,
+        78.41
       ],
       "size": [
-        14.0,
-        9.0,
-        6.0
+        21.0,
+        1.0,
+        6.82
       ],
       "bounds": {
         "min": [
-          115.0,
-          51.0,
-          50.0
+          77.0,
+          -0.5,
+          75.0
         ],
         "max": [
-          129.0,
-          60.0,
-          56.0
+          98.0,
+          0.5,
+          81.82
         ]
       },
-      "id": "TMP-U01",
-      "category": "__temp__",
-      "phase": null,
+      "id": "RF-004",
+      "category": "roof",
+      "phase": 8,
       "visible": true,
-      "notes": "demo:boolean-union",
-      "temporary": true
+      "notes": ""
     },
     {
       "obj_ref": "obj_421",
-      "material": "color_temp_result",
-      "group": "group_421_color_temp_result",
+      "material": "color_7035299",
+      "group": "group_421_color_7035299",
       "center": [
-        121.0,
-        67.0,
-        53.0
+        103.0,
+        0.0,
+        75.22
       ],
       "size": [
-        12.0,
-        8.0,
-        6.0
+        10.0,
+        1.0,
+        4.55
       ],
       "bounds": {
         "min": [
-          115.0,
-          63.0,
-          50.0
+          98.0,
+          -0.5,
+          72.95
         ],
         "max": [
-          127.0,
-          71.0,
-          56.0
+          108.0,
+          0.5,
+          77.5
         ]
       },
-      "id": "TMP-S01",
-      "category": "__temp__",
-      "phase": null,
+      "id": "RF-005",
+      "category": "roof",
+      "phase": 8,
       "visible": true,
-      "notes": "demo:boolean-subtract",
-      "temporary": true
+      "notes": ""
     },
     {
       "obj_ref": "obj_422",
-      "material": "color_temp_result",
-      "group": "group_422_color_temp_result",
+      "material": "color_7035299",
+      "group": "group_422_color_7035299",
       "center": [
-        122.0,
-        79.5,
-        53.0
+        20.0,
+        -25.0,
+        92.28
       ],
       "size": [
-        4.0,
-        5.0,
-        4.0
+        10.0,
+        1.0,
+        4.55
       ],
       "bounds": {
         "min": [
-          120.0,
-          77.0,
-          51.0
+          15.0,
+          -25.5,
+          90.0
         ],
         "max": [
-          124.0,
-          82.0,
-          55.0
+          25.0,
+          -24.5,
+          94.55
         ]
       },
-      "id": "TMP-I01",
-      "category": "__temp__",
-      "phase": null,
+      "id": "RF-006",
+      "category": "roof",
+      "phase": 8,
       "visible": true,
-      "notes": "demo:boolean-intersect",
-      "temporary": true
+      "notes": ""
     },
     {
       "obj_ref": "obj_423",
-      "material": "color_temp_result",
-      "group": "group_423_color_temp_result",
+      "material": "color_7035299",
+      "group": "group_423_color_7035299",
       "center": [
-        116.0,
-        88.0,
-        57.5
+        42.5,
+        -25.0,
+        87.65
       ],
       "size": [
-        2.0,
-        2.0,
-        15.0
+        35.0,
+        1.0,
+        9.69
       ],
       "bounds": {
         "min": [
-          115.0,
-          87.0,
-          50.0
+          25.0,
+          -25.5,
+          82.81
         ],
         "max": [
-          117.0,
-          89.0,
-          65.0
+          60.0,
+          -24.5,
+          92.5
         ]
       },
-      "id": "TMP-E01",
-      "category": "__temp__",
-      "phase": null,
+      "id": "RF-007",
+      "category": "roof",
+      "phase": 8,
       "visible": true,
-      "notes": "demo:extend-z",
-      "temporary": true
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_424",
+      "material": "color_7035299",
+      "group": "group_424_color_7035299",
+      "center": [
+        68.5,
+        -25.0,
+        82.31
+      ],
+      "size": [
+        17.0,
+        1.0,
+        5.99
+      ],
+      "bounds": {
+        "min": [
+          60.0,
+          -25.5,
+          79.32
+        ],
+        "max": [
+          77.0,
+          -24.5,
+          85.31
+        ]
+      },
+      "id": "RF-008",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_425",
+      "material": "color_7035299",
+      "group": "group_425_color_7035299",
+      "center": [
+        87.5,
+        -25.0,
+        78.41
+      ],
+      "size": [
+        21.0,
+        1.0,
+        6.82
+      ],
+      "bounds": {
+        "min": [
+          77.0,
+          -25.5,
+          75.0
+        ],
+        "max": [
+          98.0,
+          -24.5,
+          81.82
+        ]
+      },
+      "id": "RF-009",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_426",
+      "material": "color_7035299",
+      "group": "group_426_color_7035299",
+      "center": [
+        103.0,
+        -25.0,
+        75.22
+      ],
+      "size": [
+        10.0,
+        1.0,
+        4.55
+      ],
+      "bounds": {
+        "min": [
+          98.0,
+          -25.5,
+          72.95
+        ],
+        "max": [
+          108.0,
+          -24.5,
+          77.5
+        ]
+      },
+      "id": "RF-010",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_427",
+      "material": "color_7035299",
+      "group": "group_427_color_7035299",
+      "center": [
+        20.0,
+        -50.0,
+        92.28
+      ],
+      "size": [
+        10.0,
+        1.0,
+        4.55
+      ],
+      "bounds": {
+        "min": [
+          15.0,
+          -50.5,
+          90.0
+        ],
+        "max": [
+          25.0,
+          -49.5,
+          94.55
+        ]
+      },
+      "id": "RF-011",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_428",
+      "material": "color_7035299",
+      "group": "group_428_color_7035299",
+      "center": [
+        42.5,
+        -50.0,
+        87.65
+      ],
+      "size": [
+        35.0,
+        1.0,
+        9.69
+      ],
+      "bounds": {
+        "min": [
+          25.0,
+          -50.5,
+          82.81
+        ],
+        "max": [
+          60.0,
+          -49.5,
+          92.5
+        ]
+      },
+      "id": "RF-012",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_429",
+      "material": "color_7035299",
+      "group": "group_429_color_7035299",
+      "center": [
+        68.5,
+        -50.0,
+        82.31
+      ],
+      "size": [
+        17.0,
+        1.0,
+        5.99
+      ],
+      "bounds": {
+        "min": [
+          60.0,
+          -50.5,
+          79.32
+        ],
+        "max": [
+          77.0,
+          -49.5,
+          85.31
+        ]
+      },
+      "id": "RF-013",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_430",
+      "material": "color_7035299",
+      "group": "group_430_color_7035299",
+      "center": [
+        87.5,
+        -50.0,
+        78.41
+      ],
+      "size": [
+        21.0,
+        1.0,
+        6.82
+      ],
+      "bounds": {
+        "min": [
+          77.0,
+          -50.5,
+          75.0
+        ],
+        "max": [
+          98.0,
+          -49.5,
+          81.82
+        ]
+      },
+      "id": "RF-014",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_431",
+      "material": "color_7035299",
+      "group": "group_431_color_7035299",
+      "center": [
+        103.0,
+        -50.0,
+        75.22
+      ],
+      "size": [
+        10.0,
+        1.0,
+        4.55
+      ],
+      "bounds": {
+        "min": [
+          98.0,
+          -50.5,
+          72.95
+        ],
+        "max": [
+          108.0,
+          -49.5,
+          77.5
+        ]
+      },
+      "id": "RF-015",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_432",
+      "material": "color_7035299",
+      "group": "group_432_color_7035299",
+      "center": [
+        20.0,
+        -75.0,
+        92.28
+      ],
+      "size": [
+        10.0,
+        1.0,
+        4.55
+      ],
+      "bounds": {
+        "min": [
+          15.0,
+          -75.5,
+          90.0
+        ],
+        "max": [
+          25.0,
+          -74.5,
+          94.55
+        ]
+      },
+      "id": "RF-016",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_433",
+      "material": "color_7035299",
+      "group": "group_433_color_7035299",
+      "center": [
+        42.5,
+        -75.0,
+        87.65
+      ],
+      "size": [
+        35.0,
+        1.0,
+        9.69
+      ],
+      "bounds": {
+        "min": [
+          25.0,
+          -75.5,
+          82.81
+        ],
+        "max": [
+          60.0,
+          -74.5,
+          92.5
+        ]
+      },
+      "id": "RF-017",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_434",
+      "material": "color_7035299",
+      "group": "group_434_color_7035299",
+      "center": [
+        68.5,
+        -75.0,
+        82.31
+      ],
+      "size": [
+        17.0,
+        1.0,
+        5.99
+      ],
+      "bounds": {
+        "min": [
+          60.0,
+          -75.5,
+          79.32
+        ],
+        "max": [
+          77.0,
+          -74.5,
+          85.31
+        ]
+      },
+      "id": "RF-018",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_435",
+      "material": "color_7035299",
+      "group": "group_435_color_7035299",
+      "center": [
+        87.5,
+        -75.0,
+        78.41
+      ],
+      "size": [
+        21.0,
+        1.0,
+        6.82
+      ],
+      "bounds": {
+        "min": [
+          77.0,
+          -75.5,
+          75.0
+        ],
+        "max": [
+          98.0,
+          -74.5,
+          81.82
+        ]
+      },
+      "id": "RF-019",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_436",
+      "material": "color_7035299",
+      "group": "group_436_color_7035299",
+      "center": [
+        103.0,
+        -75.0,
+        75.22
+      ],
+      "size": [
+        10.0,
+        1.0,
+        4.55
+      ],
+      "bounds": {
+        "min": [
+          98.0,
+          -75.5,
+          72.95
+        ],
+        "max": [
+          108.0,
+          -74.5,
+          77.5
+        ]
+      },
+      "id": "RF-020",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_437",
+      "material": "color_7035299",
+      "group": "group_437_color_7035299",
+      "center": [
+        20.0,
+        -100.0,
+        92.28
+      ],
+      "size": [
+        10.0,
+        1.0,
+        4.55
+      ],
+      "bounds": {
+        "min": [
+          15.0,
+          -100.5,
+          90.0
+        ],
+        "max": [
+          25.0,
+          -99.5,
+          94.55
+        ]
+      },
+      "id": "RF-021",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_438",
+      "material": "color_7035299",
+      "group": "group_438_color_7035299",
+      "center": [
+        42.5,
+        -100.0,
+        87.65
+      ],
+      "size": [
+        35.0,
+        1.0,
+        9.69
+      ],
+      "bounds": {
+        "min": [
+          25.0,
+          -100.5,
+          82.81
+        ],
+        "max": [
+          60.0,
+          -99.5,
+          92.5
+        ]
+      },
+      "id": "RF-022",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_439",
+      "material": "color_7035299",
+      "group": "group_439_color_7035299",
+      "center": [
+        68.5,
+        -100.0,
+        82.31
+      ],
+      "size": [
+        17.0,
+        1.0,
+        5.99
+      ],
+      "bounds": {
+        "min": [
+          60.0,
+          -100.5,
+          79.32
+        ],
+        "max": [
+          77.0,
+          -99.5,
+          85.31
+        ]
+      },
+      "id": "RF-023",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_440",
+      "material": "color_7035299",
+      "group": "group_440_color_7035299",
+      "center": [
+        87.5,
+        -100.0,
+        78.41
+      ],
+      "size": [
+        21.0,
+        1.0,
+        6.82
+      ],
+      "bounds": {
+        "min": [
+          77.0,
+          -100.5,
+          75.0
+        ],
+        "max": [
+          98.0,
+          -99.5,
+          81.82
+        ]
+      },
+      "id": "RF-024",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_441",
+      "material": "color_7035299",
+      "group": "group_441_color_7035299",
+      "center": [
+        103.0,
+        -100.0,
+        75.22
+      ],
+      "size": [
+        10.0,
+        1.0,
+        4.55
+      ],
+      "bounds": {
+        "min": [
+          98.0,
+          -100.5,
+          72.95
+        ],
+        "max": [
+          108.0,
+          -99.5,
+          77.5
+        ]
+      },
+      "id": "RF-025",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_442",
+      "material": "color_7035299",
+      "group": "group_442_color_7035299",
+      "center": [
+        25.0,
+        -12.5,
+        91.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          24.5,
+          -25.0,
+          90.0
+        ],
+        "max": [
+          25.5,
+          0.0,
+          92.5
+        ]
+      },
+      "id": "RF-026",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_443",
+      "material": "color_7035299",
+      "group": "group_443_color_7035299",
+      "center": [
+        25.0,
+        -37.5,
+        91.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          24.5,
+          -50.0,
+          90.0
+        ],
+        "max": [
+          25.5,
+          -25.0,
+          92.5
+        ]
+      },
+      "id": "RF-027",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_444",
+      "material": "color_7035299",
+      "group": "group_444_color_7035299",
+      "center": [
+        25.0,
+        -62.5,
+        91.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          24.5,
+          -75.0,
+          90.0
+        ],
+        "max": [
+          25.5,
+          -50.0,
+          92.5
+        ]
+      },
+      "id": "RF-028",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_445",
+      "material": "color_7035299",
+      "group": "group_445_color_7035299",
+      "center": [
+        25.0,
+        -87.5,
+        91.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          24.5,
+          -100.0,
+          90.0
+        ],
+        "max": [
+          25.5,
+          -75.0,
+          92.5
+        ]
+      },
+      "id": "RF-029",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_446",
+      "material": "color_7035299",
+      "group": "group_446_color_7035299",
+      "center": [
+        60.0,
+        -12.5,
+        84.06
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          59.5,
+          -25.0,
+          82.81
+        ],
+        "max": [
+          60.5,
+          0.0,
+          85.31
+        ]
+      },
+      "id": "RF-030",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_447",
+      "material": "color_7035299",
+      "group": "group_447_color_7035299",
+      "center": [
+        60.0,
+        -37.5,
+        84.06
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          59.5,
+          -50.0,
+          82.81
+        ],
+        "max": [
+          60.5,
+          -25.0,
+          85.31
+        ]
+      },
+      "id": "RF-031",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_448",
+      "material": "color_7035299",
+      "group": "group_448_color_7035299",
+      "center": [
+        60.0,
+        -62.5,
+        84.06
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          59.5,
+          -75.0,
+          82.81
+        ],
+        "max": [
+          60.5,
+          -50.0,
+          85.31
+        ]
+      },
+      "id": "RF-032",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_449",
+      "material": "color_7035299",
+      "group": "group_449_color_7035299",
+      "center": [
+        60.0,
+        -87.5,
+        84.06
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          59.5,
+          -100.0,
+          82.81
+        ],
+        "max": [
+          60.5,
+          -75.0,
+          85.31
+        ]
+      },
+      "id": "RF-033",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_450",
+      "material": "color_7035299",
+      "group": "group_450_color_7035299",
+      "center": [
+        77.0,
+        -12.5,
+        80.57
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          76.5,
+          -25.0,
+          79.32
+        ],
+        "max": [
+          77.5,
+          0.0,
+          81.82
+        ]
+      },
+      "id": "RF-034",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_451",
+      "material": "color_7035299",
+      "group": "group_451_color_7035299",
+      "center": [
+        77.0,
+        -37.5,
+        80.57
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          76.5,
+          -50.0,
+          79.32
+        ],
+        "max": [
+          77.5,
+          -25.0,
+          81.82
+        ]
+      },
+      "id": "RF-035",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_452",
+      "material": "color_7035299",
+      "group": "group_452_color_7035299",
+      "center": [
+        77.0,
+        -62.5,
+        80.57
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          76.5,
+          -75.0,
+          79.32
+        ],
+        "max": [
+          77.5,
+          -50.0,
+          81.82
+        ]
+      },
+      "id": "RF-036",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_453",
+      "material": "color_7035299",
+      "group": "group_453_color_7035299",
+      "center": [
+        77.0,
+        -87.5,
+        80.57
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          76.5,
+          -100.0,
+          79.32
+        ],
+        "max": [
+          77.5,
+          -75.0,
+          81.82
+        ]
+      },
+      "id": "RF-037",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_454",
+      "material": "color_7035299",
+      "group": "group_454_color_7035299",
+      "center": [
+        98.0,
+        -12.5,
+        76.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          97.5,
+          -25.0,
+          75.0
+        ],
+        "max": [
+          98.5,
+          0.0,
+          77.5
+        ]
+      },
+      "id": "RF-038",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_455",
+      "material": "color_7035299",
+      "group": "group_455_color_7035299",
+      "center": [
+        98.0,
+        -37.5,
+        76.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          97.5,
+          -50.0,
+          75.0
+        ],
+        "max": [
+          98.5,
+          -25.0,
+          77.5
+        ]
+      },
+      "id": "RF-039",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_456",
+      "material": "color_7035299",
+      "group": "group_456_color_7035299",
+      "center": [
+        98.0,
+        -62.5,
+        76.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          97.5,
+          -75.0,
+          75.0
+        ],
+        "max": [
+          98.5,
+          -50.0,
+          77.5
+        ]
+      },
+      "id": "RF-040",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_457",
+      "material": "color_7035299",
+      "group": "group_457_color_7035299",
+      "center": [
+        98.0,
+        -87.5,
+        76.25
+      ],
+      "size": [
+        1.0,
+        25.0,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          97.5,
+          -100.0,
+          75.0
+        ],
+        "max": [
+          98.5,
+          -75.0,
+          77.5
+        ]
+      },
+      "id": "RF-041",
+      "category": "roof",
+      "phase": 8,
+      "visible": true,
+      "notes": ""
     }
   ]
 }

@@ -196,11 +196,11 @@
     "__temp__": "#38bdf8"
   },
   "summary": {
-    "parts": 417,
-    "with_id": 417,
-    "with_category": 417,
+    "parts": 416,
+    "with_id": 416,
+    "with_category": 416,
     "with_phase": 410,
-    "temporary": 7
+    "temporary": 6
   },
   "parts": [
     {
@@ -13519,39 +13519,6 @@
       "phase": null,
       "visible": true,
       "notes": "demo:boolean-intersect",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_423",
-      "material": "color_temp_result",
-      "group": "group_423_color_temp_result",
-      "center": [
-        116.0,
-        88.0,
-        57.5
-      ],
-      "size": [
-        2.0,
-        2.0,
-        15.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          87.0,
-          50.0
-        ],
-        "max": [
-          117.0,
-          89.0,
-          65.0
-        ]
-      },
-      "id": "TMP-E01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:extend-z",
       "temporary": true
     }
   ]

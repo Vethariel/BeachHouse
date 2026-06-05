@@ -19,11 +19,7 @@
     "color_4634441": "#46b749",
     "color_9771553": "#951a21",
     "color_16768282": "#ffdd1a",
-    "color_16089887": "#f5831f",
-    "color_7035299": "#6b7280",
-    "color_temp_plane": "#1eb3f5",
-    "color_temp_volume": "#f59e0b",
-    "color_temp_result": "#46b749"
+    "color_16089887": "#f5831f"
   },
   "phases": [
     {
@@ -161,11 +157,6 @@
       "key": "__none__",
       "label": "Sin categoría",
       "color": "#64748b"
-    },
-    {
-      "key": "__temp__",
-      "label": "Temporales",
-      "color": "#38bdf8"
     }
   ],
   "phase_labels": {
@@ -192,15 +183,13 @@
     "floor_l2_wall": "#d4b816",
     "floor_l2_frame": "#c86810",
     "roof": "#6b7280",
-    "__none__": "#64748b",
-    "__temp__": "#38bdf8"
+    "__none__": "#64748b"
   },
   "summary": {
     "parts": 417,
     "with_id": 417,
     "with_category": 417,
-    "with_phase": 410,
-    "temporary": 7
+    "with_phase": 417
   },
   "parts": [
     {
@@ -9932,6 +9921,102 @@
       "notes": ""
     },
     {
+      "obj_ref": "obj_304",
+      "material": "color_16768282",
+      "group": "group_304_16768282",
+      "center": [
+        72.25,
+        -37.5,
+        44.25
+      ],
+      "size": [
+        0.5,
+        24.0,
+        1.5
+      ],
+      "bounds": {
+        "min": [
+          72.0,
+          -49.5,
+          43.5
+        ],
+        "max": [
+          72.5,
+          -25.5,
+          45.0
+        ]
+      },
+      "id": "VG2-015",
+      "category": "floor_l2_joist",
+      "phase": 6,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_305",
+      "material": "color_16768282",
+      "group": "group_305_16768282",
+      "center": [
+        67.75,
+        -37.5,
+        44.25
+      ],
+      "size": [
+        0.5,
+        24.0,
+        1.5
+      ],
+      "bounds": {
+        "min": [
+          67.5,
+          -49.5,
+          43.5
+        ],
+        "max": [
+          68.0,
+          -25.5,
+          45.0
+        ]
+      },
+      "id": "VG2-016",
+      "category": "floor_l2_joist",
+      "phase": 6,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_306",
+      "material": "color_16768282",
+      "group": "group_306_16768282",
+      "center": [
+        63.25,
+        -37.5,
+        44.25
+      ],
+      "size": [
+        0.5,
+        24.0,
+        1.5
+      ],
+      "bounds": {
+        "min": [
+          63.0,
+          -49.5,
+          43.5
+        ],
+        "max": [
+          63.5,
+          -25.5,
+          45.0
+        ]
+      },
+      "id": "VG2-017",
+      "category": "floor_l2_joist",
+      "phase": 6,
+      "visible": true,
+      "notes": ""
+    },
+    {
       "obj_ref": "obj_307",
       "material": "color_16768282",
       "group": "group_307_16768282",
@@ -11462,6 +11547,134 @@
         ]
       },
       "id": "AM2-017",
+      "category": "floor_l2_tie",
+      "phase": 7,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_355",
+      "material": "color_16089887",
+      "group": "group_355_16089887",
+      "center": [
+        74.5,
+        -39.75,
+        44.25
+      ],
+      "size": [
+        4.0,
+        0.5,
+        1.5
+      ],
+      "bounds": {
+        "min": [
+          72.5,
+          -40.0,
+          43.5
+        ],
+        "max": [
+          76.5,
+          -39.5,
+          45.0
+        ]
+      },
+      "id": "AM2-018",
+      "category": "floor_l2_tie",
+      "phase": 7,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_356",
+      "material": "color_16089887",
+      "group": "group_356_16089887",
+      "center": [
+        70.0,
+        -35.75,
+        44.25
+      ],
+      "size": [
+        4.0,
+        0.5,
+        1.5
+      ],
+      "bounds": {
+        "min": [
+          68.0,
+          -36.0,
+          43.5
+        ],
+        "max": [
+          72.0,
+          -35.5,
+          45.0
+        ]
+      },
+      "id": "AM2-019",
+      "category": "floor_l2_tie",
+      "phase": 7,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_357",
+      "material": "color_16089887",
+      "group": "group_357_16089887",
+      "center": [
+        65.5,
+        -39.75,
+        44.25
+      ],
+      "size": [
+        4.0,
+        0.5,
+        1.5
+      ],
+      "bounds": {
+        "min": [
+          63.5,
+          -40.0,
+          43.5
+        ],
+        "max": [
+          67.5,
+          -39.5,
+          45.0
+        ]
+      },
+      "id": "AM2-020",
+      "category": "floor_l2_tie",
+      "phase": 7,
+      "visible": true,
+      "notes": ""
+    },
+    {
+      "obj_ref": "obj_358",
+      "material": "color_16089887",
+      "group": "group_358_16089887",
+      "center": [
+        61.75,
+        -35.75,
+        44.25
+      ],
+      "size": [
+        2.5,
+        0.5,
+        1.5
+      ],
+      "bounds": {
+        "min": [
+          60.5,
+          -36.0,
+          43.5
+        ],
+        "max": [
+          63.0,
+          -35.5,
+          45.0
+        ]
+      },
+      "id": "AM2-021",
       "category": "floor_l2_tie",
       "phase": 7,
       "visible": true,
@@ -13322,237 +13535,6 @@
       "phase": 7,
       "visible": true,
       "notes": ""
-    },
-    {
-      "obj_ref": "obj_417",
-      "material": "color_temp_plane",
-      "group": "group_417_color_temp_plane",
-      "center": [
-        119.0,
-        18.0,
-        52.0
-      ],
-      "size": [
-        12.0,
-        6.0,
-        4.0
-      ],
-      "bounds": {
-        "min": [
-          113.0,
-          15.0,
-          50.0
-        ],
-        "max": [
-          125.0,
-          21.0,
-          54.0
-        ]
-      },
-      "id": "TMP-P01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:plane",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_418",
-      "material": "color_temp_volume",
-      "group": "group_418_color_temp_volume",
-      "center": [
-        120.0,
-        30.0,
-        52.0
-      ],
-      "size": [
-        10.0,
-        6.0,
-        4.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          27.0,
-          50.0
-        ],
-        "max": [
-          125.0,
-          33.0,
-          54.0
-        ]
-      },
-      "id": "TMP-V01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:volume",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_419",
-      "material": "color_temp_volume",
-      "group": "group_419_color_temp_volume",
-      "center": [
-        121.0,
-        42.0,
-        53.5
-      ],
-      "size": [
-        12.0,
-        6.0,
-        7.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          39.0,
-          50.0
-        ],
-        "max": [
-          127.0,
-          45.0,
-          57.0
-        ]
-      },
-      "id": "TMP-V02",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:volume-skew",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_420",
-      "material": "color_temp_result",
-      "group": "group_420_color_temp_result",
-      "center": [
-        122.0,
-        55.5,
-        53.0
-      ],
-      "size": [
-        14.0,
-        9.0,
-        6.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          51.0,
-          50.0
-        ],
-        "max": [
-          129.0,
-          60.0,
-          56.0
-        ]
-      },
-      "id": "TMP-U01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:boolean-union",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_421",
-      "material": "color_temp_result",
-      "group": "group_421_color_temp_result",
-      "center": [
-        121.0,
-        67.0,
-        53.0
-      ],
-      "size": [
-        12.0,
-        8.0,
-        6.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          63.0,
-          50.0
-        ],
-        "max": [
-          127.0,
-          71.0,
-          56.0
-        ]
-      },
-      "id": "TMP-S01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:boolean-subtract",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_422",
-      "material": "color_temp_result",
-      "group": "group_422_color_temp_result",
-      "center": [
-        122.0,
-        79.5,
-        53.0
-      ],
-      "size": [
-        4.0,
-        5.0,
-        4.0
-      ],
-      "bounds": {
-        "min": [
-          120.0,
-          77.0,
-          51.0
-        ],
-        "max": [
-          124.0,
-          82.0,
-          55.0
-        ]
-      },
-      "id": "TMP-I01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:boolean-intersect",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_423",
-      "material": "color_temp_result",
-      "group": "group_423_color_temp_result",
-      "center": [
-        116.0,
-        88.0,
-        57.5
-      ],
-      "size": [
-        2.0,
-        2.0,
-        15.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          87.0,
-          50.0
-        ],
-        "max": [
-          117.0,
-          89.0,
-          65.0
-        ]
-      },
-      "id": "TMP-E01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:extend-z",
-      "temporary": true
     }
   ]
 }
