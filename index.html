@@ -589,11 +589,20 @@
         } else if (part.temporary) {
           mat.side = THREE.DoubleSide;
           mat.transparent = true;
-          mat.opacity = part.notes?.startsWith("demo:plane") ? 0.45 : 0.85;
-          if (part.notes?.startsWith("demo:plane")) {
+          mat.opacity =
+            part.notes?.startsWith("demo:plane") ||
+            part.notes?.startsWith("demo:roof-plane") ||
+            part.notes?.startsWith("demo:roof-subtract")
+              ? 0.45
+              : 0.85;
+          if (part.notes?.startsWith("demo:plane") || part.notes?.startsWith("demo:roof-plane")) {
             mat.color = new THREE.Color("#38bdf8");
             mat.emissive = new THREE.Color("#0ea5e9");
             mat.emissiveIntensity = isSelected ? 0.5 : 0.25;
+          } else if (part.notes?.startsWith("demo:roof-subtract")) {
+            mat.color = new THREE.Color("#f97316");
+            mat.emissive = new THREE.Color("#ea580c");
+            mat.emissiveIntensity = isSelected ? 0.5 : 0.28;
           } else if (part.notes?.startsWith("demo:boolean")) {
             mat.color = new THREE.Color("#46b749");
             mat.emissive = new THREE.Color("#2d8a30");

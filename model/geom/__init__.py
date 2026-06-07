@@ -4,6 +4,7 @@ from model.geom.boolean import (
     ensure_closed_solids,
     ensure_closed_volumes,
     intersect_volumes,
+    subtract_solids,
     subtract_volumes,
     union_volumes,
 )
@@ -22,6 +23,7 @@ __all__ = [
     "mesh_to_obj_dict",
     "validate_closed_mesh",
     "union_volumes",
+    "subtract_solids",
     "subtract_volumes",
     "intersect_volumes",
     "ensure_closed_solids",

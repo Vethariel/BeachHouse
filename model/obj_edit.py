@@ -5,6 +5,9 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from model.geom.solid import Solid
+from model.geom.types import Vec3
+
 
 def _parse_objects(text: str) -> list[dict]:
     objects: list[dict] = []
@@ -150,3 +153,41 @@ def append_objects(path: Path, new_objects: list[dict]) -> list[str]:
 
     _write_objects(path, objects, header)
     return created
+
+
+def replace_objects(path: Path, replacements: dict[str, dict]) -> list[str]:
+    """Replace mesh geometry for existing obj_refs (keeps group and material)."""
+    if not replacements:
+        return []
+
+    text = path.read_text(encoding="utf-8")
+    header = _read_header(text)
+    objects = _parse_objects(text)
+    by_ref = {obj["obj_ref"]: obj for obj in objects}
+
+    missing = sorted(set(replacements) - set(by_ref))
+    if missing:
+        raise ValueError(f"Objetos no encontrados en {path.name}: {', '.join(missing)}")
+
+    updated: list[str] = []
+    for obj_ref, raw in replacements.items():
+        obj = by_ref[obj_ref]
+        obj["verts"] = raw["verts"]
+        obj["faces_local"] = raw["faces_local"]
+        updated.append(obj_ref)
+
+    _write_objects(path, objects, header)
+    return updated
+
+
+def solid_from_obj_ref(path: Path, obj_ref: str, *, strict: bool = True) -> Solid:
+    """Load one OBJ object as a Solid for boolean operations."""
+    text = path.read_text(encoding="utf-8")
+    obj = next(item for item in _parse_objects(text) if item["obj_ref"] == obj_ref)
+    vertices = [Vec3(float(x), float(y), float(z)) for x, y, z in obj["verts"]]
+    if strict:
+        return Solid(vertices, obj["faces_local"])
+    solid = Solid.__new__(Solid)
+    solid.vertices = vertices
+    solid.faces = obj["faces_local"]
+    return solid

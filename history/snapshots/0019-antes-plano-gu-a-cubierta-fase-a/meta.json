@@ -1,0 +1,18 @@
+{
+  "id": 19,
+  "slug": "antes-plano-gu-a-cubierta-fase-a",
+  "created_at": "2026-06-07T21:22:34+00:00",
+  "message": "antes: plano guía cubierta (fase A)",
+  "auto": true,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 417,
+    "with_category": 417,
+    "with_phase": 410
+  }
+}

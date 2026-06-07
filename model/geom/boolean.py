@@ -69,6 +69,10 @@ def subtract_volumes(base: Volume, cut: Volume) -> list[Solid]:
     return _boolean(meshes, "difference")
 
 
+def subtract_solids(base: Solid, cut: Solid) -> list[Solid]:
+    return _boolean([base.to_trimesh(), cut.to_trimesh()], "difference")
+
+
 def intersect_volumes(a: Volume, b: Volume) -> list[Solid]:
     meshes = [Solid.from_volume(a).to_trimesh(), Solid.from_volume(b).to_trimesh()]
     return _boolean(meshes, "intersection")

@@ -288,7 +288,457 @@
         "with_category": 417,
         "with_phase": 410
       }
+    },
+    {
+      "id": 17,
+      "slug": "antes-plano-gu-a-cubierta-fase-a",
+      "created_at": "2026-06-07T21:18:03+00:00",
+      "message": "antes: plano guía cubierta (fase A)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 417,
+        "with_category": 417,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 18,
+      "slug": "despu-s-plano-gu-a-cubierta-fase-a",
+      "created_at": "2026-06-07T21:18:03+00:00",
+      "message": "después: plano guía cubierta (fase A)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 19,
+      "slug": "antes-plano-gu-a-cubierta-fase-a",
+      "created_at": "2026-06-07T21:22:34+00:00",
+      "message": "antes: plano guía cubierta (fase A)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 417,
+        "with_category": 417,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 20,
+      "slug": "despu-s-plano-gu-a-cubierta-fase-a",
+      "created_at": "2026-06-07T21:22:34+00:00",
+      "message": "después: plano guía cubierta (fase A)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 21,
+      "slug": "antes-plano-gu-a-cubierta-fase-a",
+      "created_at": "2026-06-07T21:27:00+00:00",
+      "message": "antes: plano guía cubierta (fase A)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 417,
+        "with_category": 417,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 22,
+      "slug": "despu-s-plano-gu-a-cubierta-fase-a",
+      "created_at": "2026-06-07T21:27:00+00:00",
+      "message": "después: plano guía cubierta (fase A)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 23,
+      "slug": "antes-volumen-sustracci-n-cubierta-fase-b1",
+      "created_at": "2026-06-07T21:45:49+00:00",
+      "message": "antes: volumen sustracción cubierta (fase B1)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 24,
+      "slug": "despu-s-volumen-sustracci-n-cubierta-fase-b1",
+      "created_at": "2026-06-07T21:45:49+00:00",
+      "message": "después: volumen sustracción cubierta (fase B1)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 419,
+        "with_category": 419,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 25,
+      "slug": "antes-pilares-pendiente-piloto-pil-013",
+      "created_at": "2026-06-07T21:51:11+00:00",
+      "message": "antes: pilares pendiente piloto PIL-013",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 419,
+        "with_category": 419,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 26,
+      "slug": "despu-s-pilares-pendiente-piloto-pil-013",
+      "created_at": "2026-06-07T21:51:11+00:00",
+      "message": "después: pilares pendiente piloto PIL-013",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 419,
+        "with_category": 419,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 27,
+      "slug": "antes-pilares-con-tope-en-pendiente-20-piezas",
+      "created_at": "2026-06-07T21:54:54+00:00",
+      "message": "antes: pilares con tope en pendiente (20 piezas)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 419,
+        "with_category": 419,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 28,
+      "slug": "despu-s-pilares-con-tope-en-pendiente-20-piezas",
+      "created_at": "2026-06-07T21:54:54+00:00",
+      "message": "después: pilares con tope en pendiente (20 piezas)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 419,
+        "with_category": 419,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 29,
+      "slug": "antes-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:11:52+00:00",
+      "message": "antes: entramado cubierta (fase C)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 30,
+      "slug": "despu-s-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:11:52+00:00",
+      "message": "después: entramado cubierta (fase C)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 459,
+        "with_category": 459,
+        "with_phase": 451
+      }
+    },
+    {
+      "id": 31,
+      "slug": "antes-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:34:56+00:00",
+      "message": "antes: entramado cubierta (fase C)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 32,
+      "slug": "despu-s-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:34:56+00:00",
+      "message": "después: entramado cubierta (fase C)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 529,
+        "with_category": 529,
+        "with_phase": 521
+      }
+    },
+    {
+      "id": 33,
+      "slug": "antes-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:39:17+00:00",
+      "message": "antes: entramado cubierta (fase C)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 34,
+      "slug": "despu-s-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:39:17+00:00",
+      "message": "después: entramado cubierta (fase C)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 529,
+        "with_category": 529,
+        "with_phase": 521
+      }
+    },
+    {
+      "id": 35,
+      "slug": "antes-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:44:54+00:00",
+      "message": "antes: entramado cubierta (fase C)",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 418,
+        "with_category": 418,
+        "with_phase": 410
+      }
+    },
+    {
+      "id": 36,
+      "slug": "despu-s-entramado-cubierta-fase-c",
+      "created_at": "2026-06-07T22:44:54+00:00",
+      "message": "después: entramado cubierta (fase C)",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 529,
+        "with_category": 529,
+        "with_phase": 521
+      }
+    },
+    {
+      "id": 37,
+      "slug": "auto-backup-antes-de-restaurar-32",
+      "created_at": "2026-06-07T22:48:42+00:00",
+      "message": "auto-backup antes de restaurar #32",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 529,
+        "with_category": 529,
+        "with_phase": 521
+      }
+    },
+    {
+      "id": 38,
+      "slug": "antes-diagonales-voladizo-regeneradas",
+      "created_at": "2026-06-07T22:51:23+00:00",
+      "message": "antes: diagonales voladizo regeneradas",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 519,
+        "with_category": 519,
+        "with_phase": 511
+      }
+    },
+    {
+      "id": 39,
+      "slug": "despu-s-diagonales-voladizo-regeneradas",
+      "created_at": "2026-06-07T22:51:23+00:00",
+      "message": "después: diagonales voladizo regeneradas",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 529,
+        "with_category": 529,
+        "with_phase": 521
+      }
+    },
+    {
+      "id": 40,
+      "slug": "antes-diagonales-voladizo-regeneradas",
+      "created_at": "2026-06-07T22:53:41+00:00",
+      "message": "antes: diagonales voladizo regeneradas",
+      "auto": true,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 519,
+        "with_category": 519,
+        "with_phase": 511
+      }
+    },
+    {
+      "id": 41,
+      "slug": "despu-s-diagonales-voladizo-regeneradas",
+      "created_at": "2026-06-07T22:53:41+00:00",
+      "message": "después: diagonales voladizo regeneradas",
+      "auto": false,
+      "files": [
+        "tinker.obj",
+        "obj.mtl",
+        "catalog/categories.json",
+        "catalog/parts.json"
+      ],
+      "stats": {
+        "parts": 529,
+        "with_category": 529,
+        "with_phase": 521
+      }
     }
   ],
-  "current": 16
+  "current": 41
 }

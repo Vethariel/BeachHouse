@@ -65,20 +65,35 @@ class Solid:
         faces = mesh.faces.tolist()
         return cls(vertices, faces)
 
+    @classmethod
+    def from_trimesh_relaxed(cls, mesh: trimesh.Trimesh) -> Solid:
+        """Desde malla booleana sin exigir validación estricta previa."""
+        mesh = mesh.copy()
+        mesh.merge_vertices()
+        mesh.update_faces(mesh.nondegenerate_faces())
+        mesh.remove_infinite_values()
+        if mesh.is_empty:
+            raise ValueError("La malla booleana quedó vacía.")
+        obj = cls.__new__(cls)
+        obj.vertices = [Vec3(float(x), float(y), float(z)) for x, y, z in mesh.vertices]
+        obj.faces = mesh.faces.tolist()
+        return obj
+
     def validate(self) -> None:
         validate_closed_mesh(self.vertices, self.faces)
 
-    def to_mesh(self, *, material: str) -> dict:
-        self.validate()
+    def to_mesh(self, *, material: str, validate: bool = True) -> dict:
+        if validate:
+            self.validate()
         return mesh_to_obj_dict(self.vertices, self.faces, material=material)
 
-    def to_trimesh(self) -> trimesh.Trimesh:
+    def to_trimesh(self, *, strict: bool = True) -> trimesh.Trimesh:
         mesh = trimesh.Trimesh(
             vertices=np.array([point.as_tuple() for point in self.vertices], dtype=float),
             faces=np.array(self.faces, dtype=int),
             process=False,
         )
-        if not mesh.is_volume:
+        if strict and not mesh.is_volume:
             raise ValueError("El sólido no es un volumen cerrado válido para booleanos.")
         return mesh
 
