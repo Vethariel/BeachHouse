@@ -26,6 +26,7 @@ DIAGONAL_DEPTH = 1.0
 # Ajuste de empalme (~4 cm real por extremo; 1 u. modelo = 10 cm)
 DIAGONAL_ROOF_INSET = 0.8
 DIAGONAL_PILLAR_EXTEND = 0.4
+EXCLUDED_DIAGONAL_IDS = frozenset({"RD-006"})
 
 PILLAR_COLUMNS_X = (25.0, 60.0, 77.0, 98.0)
 ROOF_ROWS_Y = (0.0, -25.0, -50.0, -75.0, -100.0)
@@ -191,28 +192,35 @@ def _voladizo_diagonal_specs(seq: int) -> tuple[list[FramingSpec], int]:
             Vec3(X_MIN, y, z_tip_high),
             Vec3(PILLAR_COLUMNS_X[0], y, Z_PILLAR_P2_MID),
         )
+        part_id = f"RD-{seq:03d}"
+        seq += 1
+        if part_id in EXCLUDED_DIAGONAL_IDS:
+            continue
         specs.append(
             FramingSpec(
-                f"RD-{seq:03d}",
+                part_id,
                 _beam_between(p0, p1),
                 MAT_ROOF_DIAGONAL,
             )
         )
-        seq += 1
 
+    for y in ROOF_ROWS_Y:
         z_tip_low = roof_z_at(X_MAX) + BEAM_CANTO
         p0, p1 = _adjust_diagonal_endpoints(
             Vec3(X_MAX, y, z_tip_low),
             Vec3(PILLAR_COLUMNS_X[3], y, Z_PILLAR_P2_MID),
         )
+        part_id = f"RD-{seq:03d}"
+        seq += 1
+        if part_id in EXCLUDED_DIAGONAL_IDS:
+            continue
         specs.append(
             FramingSpec(
-                f"RD-{seq:03d}",
+                part_id,
                 _beam_between(p0, p1),
                 MAT_ROOF_DIAGONAL,
             )
         )
-        seq += 1
 
     return specs, seq
 

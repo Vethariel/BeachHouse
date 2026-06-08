@@ -18,7 +18,7 @@
       "label": "Cimentación",
       "category": "foundation",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -26,7 +26,7 @@
       "label": "Pilares",
       "category": "pillar",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -34,7 +34,7 @@
       "label": "Vigas principales — P1",
       "category": "floor_l1_beam",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -42,7 +42,7 @@
       "label": "Viguetas — P1",
       "category": "floor_l1_joist",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -50,7 +50,7 @@
       "label": "Amarres — P1",
       "category": "floor_l1_tie",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -58,7 +58,7 @@
       "label": "Vigas principales — P2",
       "category": "floor_l2_beam",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -66,7 +66,7 @@
       "label": "Viguetas — P2",
       "category": "floor_l2_joist",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -74,7 +74,7 @@
       "label": "Amarres — P2",
       "category": "floor_l2_tie",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -82,10 +82,106 @@
       "label": "Entramado — cubierta",
       "category": "roof",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
+    },
+    {
+      "id": 9,
+      "label": "Escalera",
+      "category": "stair",
+      "animation": "fall",
+      "phase_duration_ms": 2500,
+      "fall_height": 120
+    },
+    {
+      "id": 10,
+      "label": "Baranda · P1",
+      "category": "railing",
+      "animation": "fall",
+      "phase_duration_ms": 2500,
+      "fall_height": 120
+    },
+    {
+      "id": 11,
+      "label": "Baranda · P2",
+      "category": "railing",
+      "animation": "fall",
+      "phase_duration_ms": 2500,
+      "fall_height": 120
+    },
+    {
+      "id": 12,
+      "label": "Acabados · maderas",
+      "animation": "materials",
+      "phase_duration_ms": 2500
     }
   ],
+  "wood_finishes": {
+    "foundation": {
+      "label": "Douglasie tratada",
+      "color": "#5d4037"
+    },
+    "pillar": {
+      "label": "Pino estructural",
+      "color": "#c8a165"
+    },
+    "floor_l1_beam": {
+      "label": "Roble — vigas P1",
+      "color": "#a67b5b"
+    },
+    "floor_l1_joist": {
+      "label": "Abeto — viguetas P1",
+      "color": "#d4b896"
+    },
+    "floor_l1_tie": {
+      "label": "Cedro — amarres P1",
+      "color": "#b8956a"
+    },
+    "floor_l1_wall": {
+      "label": "Pino — muros P1",
+      "color": "#c9a66b"
+    },
+    "floor_l1_frame": {
+      "label": "Haya — marcos P1",
+      "color": "#b8895a"
+    },
+    "floor_l2_beam": {
+      "label": "Roble oscuro — vigas P2",
+      "color": "#8b5e3c"
+    },
+    "floor_l2_joist": {
+      "label": "Abeto — viguetas P2",
+      "color": "#c4a882"
+    },
+    "floor_l2_tie": {
+      "label": "Cedro — amarres P2",
+      "color": "#a68455"
+    },
+    "floor_l2_wall": {
+      "label": "Pino — muros P2",
+      "color": "#b89a62"
+    },
+    "floor_l2_frame": {
+      "label": "Haya — marcos P2",
+      "color": "#9a7348"
+    },
+    "roof": {
+      "label": "Teca — cubierta",
+      "color": "#6b5344"
+    },
+    "stair": {
+      "label": "Haya — escalera",
+      "color": "#9a7352"
+    },
+    "railing": {
+      "label": "Ipe — barandas",
+      "color": "#4e342e"
+    },
+    "__none__": {
+      "label": "Madera genérica",
+      "color": "#a08060"
+    }
+  },
   "categories": [
     {
       "key": "foundation",
@@ -161,6 +257,16 @@
       "key": "__temp__",
       "label": "Temporales",
       "color": "#38bdf8"
+    },
+    {
+      "key": "stair",
+      "label": "Escalera",
+      "color": "#b45309"
+    },
+    {
+      "key": "railing",
+      "label": "Barandas",
+      "color": "#475569"
     }
   ]
 }

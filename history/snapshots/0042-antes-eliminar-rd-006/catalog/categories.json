@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "units": {
+    "model_axis_unit": "tinkercad_mm",
+    "real_axis_unit": "m",
+    "meters_per_model_unit": 0.1,
+    "model_units_per_meter": 10,
+    "reference": {
+      "part_id": "PIL-002",
+      "model_height_z": 73,
+      "real_height_m": 7.3
+    },
+    "note": "El visualizador no re-escala. 1 unidad del OBJ = 0.1 m reales (10 cm)."
+  },
+  "phases": [
+    {
+      "id": 0,
+      "label": "Cimentación",
+      "category": "foundation",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 1,
+      "label": "Pilares",
+      "category": "pillar",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 2,
+      "label": "Vigas principales — P1",
+      "category": "floor_l1_beam",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 3,
+      "label": "Viguetas — P1",
+      "category": "floor_l1_joist",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 4,
+      "label": "Amarres — P1",
+      "category": "floor_l1_tie",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 5,
+      "label": "Vigas principales — P2",
+      "category": "floor_l2_beam",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 6,
+      "label": "Viguetas — P2",
+      "category": "floor_l2_joist",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 7,
+      "label": "Amarres — P2",
+      "category": "floor_l2_tie",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    },
+    {
+      "id": 8,
+      "label": "Entramado — cubierta",
+      "category": "roof",
+      "animation": "fall",
+      "phase_duration_ms": 3000,
+      "fall_height": 120
+    }
+  ],
+  "categories": [
+    {
+      "key": "foundation",
+      "label": "Cimentación",
+      "color": "#95212d"
+    },
+    {
+      "key": "pillar",
+      "label": "Pilares",
+      "color": "#e91d2d"
+    },
+    {
+      "key": "floor_l1_beam",
+      "label": "Vigas principales — P1",
+      "color": "#46b749"
+    },
+    {
+      "key": "floor_l1_joist",
+      "label": "Viguetas — P1",
+      "color": "#ffdd1a"
+    },
+    {
+      "key": "floor_l1_tie",
+      "label": "Amarres — P1",
+      "color": "#f5831f"
+    },
+    {
+      "key": "floor_l1_wall",
+      "label": "Muros — P1",
+      "color": "#e6c818"
+    },
+    {
+      "key": "floor_l1_frame",
+      "label": "Marcos — P1",
+      "color": "#f5831f"
+    },
+    {
+      "key": "floor_l2_beam",
+      "label": "Vigas principales — P2",
+      "color": "#2d8a30"
+    },
+    {
+      "key": "floor_l2_joist",
+      "label": "Viguetas — P2",
+      "color": "#ffdd1a"
+    },
+    {
+      "key": "floor_l2_tie",
+      "label": "Amarres — P2",
+      "color": "#f5831f"
+    },
+    {
+      "key": "floor_l2_wall",
+      "label": "Muros — P2",
+      "color": "#d4b816"
+    },
+    {
+      "key": "floor_l2_frame",
+      "label": "Marcos — P2",
+      "color": "#c86810"
+    },
+    {
+      "key": "roof",
+      "label": "Cubierta",
+      "color": "#6b7280"
+    },
+    {
+      "key": "__none__",
+      "label": "Sin categoría",
+      "color": "#64748b"
+    },
+    {
+      "key": "__temp__",
+      "label": "Temporales",
+      "color": "#38bdf8"
+    }
+  ]
+}

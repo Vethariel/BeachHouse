@@ -24,7 +24,9 @@
     "color_temp_plane": "#1eb3f5",
     "color_temp_volume": "#f59e0b",
     "color_temp_result": "#46b749",
-    "color_temp_subtract": "#f5503a"
+    "color_temp_subtract": "#f5503a",
+    "color_stair": "#b45309",
+    "color_railing": "#475569"
   },
   "phases": [
     {
@@ -32,7 +34,7 @@
       "label": "Cimentación",
       "category": "foundation",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -40,7 +42,7 @@
       "label": "Pilares",
       "category": "pillar",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -48,7 +50,7 @@
       "label": "Vigas principales — P1",
       "category": "floor_l1_beam",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -56,7 +58,7 @@
       "label": "Viguetas — P1",
       "category": "floor_l1_joist",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -64,7 +66,7 @@
       "label": "Amarres — P1",
       "category": "floor_l1_tie",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -72,7 +74,7 @@
       "label": "Vigas principales — P2",
       "category": "floor_l2_beam",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -80,7 +82,7 @@
       "label": "Viguetas — P2",
       "category": "floor_l2_joist",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -88,7 +90,7 @@
       "label": "Amarres — P2",
       "category": "floor_l2_tie",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
     },
     {
@@ -96,8 +98,38 @@
       "label": "Entramado — cubierta",
       "category": "roof",
       "animation": "fall",
-      "phase_duration_ms": 3000,
+      "phase_duration_ms": 2500,
       "fall_height": 120
+    },
+    {
+      "id": 9,
+      "label": "Escalera",
+      "category": "stair",
+      "animation": "fall",
+      "phase_duration_ms": 2500,
+      "fall_height": 120
+    },
+    {
+      "id": 10,
+      "label": "Baranda · P1",
+      "category": "railing",
+      "animation": "fall",
+      "phase_duration_ms": 2500,
+      "fall_height": 120
+    },
+    {
+      "id": 11,
+      "label": "Baranda · P2",
+      "category": "railing",
+      "animation": "fall",
+      "phase_duration_ms": 2500,
+      "fall_height": 120
+    },
+    {
+      "id": 12,
+      "label": "Acabados · maderas",
+      "animation": "materials",
+      "phase_duration_ms": 2500
     }
   ],
   "categories": [
@@ -175,8 +207,84 @@
       "key": "__temp__",
       "label": "Temporales",
       "color": "#38bdf8"
+    },
+    {
+      "key": "stair",
+      "label": "Escalera",
+      "color": "#b45309"
+    },
+    {
+      "key": "railing",
+      "label": "Barandas",
+      "color": "#475569"
     }
   ],
+  "wood_finishes": {
+    "foundation": {
+      "label": "Douglasie tratada",
+      "color": "#5d4037"
+    },
+    "pillar": {
+      "label": "Pino estructural",
+      "color": "#c8a165"
+    },
+    "floor_l1_beam": {
+      "label": "Roble — vigas P1",
+      "color": "#a67b5b"
+    },
+    "floor_l1_joist": {
+      "label": "Abeto — viguetas P1",
+      "color": "#d4b896"
+    },
+    "floor_l1_tie": {
+      "label": "Cedro — amarres P1",
+      "color": "#b8956a"
+    },
+    "floor_l1_wall": {
+      "label": "Pino — muros P1",
+      "color": "#c9a66b"
+    },
+    "floor_l1_frame": {
+      "label": "Haya — marcos P1",
+      "color": "#b8895a"
+    },
+    "floor_l2_beam": {
+      "label": "Roble oscuro — vigas P2",
+      "color": "#8b5e3c"
+    },
+    "floor_l2_joist": {
+      "label": "Abeto — viguetas P2",
+      "color": "#c4a882"
+    },
+    "floor_l2_tie": {
+      "label": "Cedro — amarres P2",
+      "color": "#a68455"
+    },
+    "floor_l2_wall": {
+      "label": "Pino — muros P2",
+      "color": "#b89a62"
+    },
+    "floor_l2_frame": {
+      "label": "Haya — marcos P2",
+      "color": "#9a7348"
+    },
+    "roof": {
+      "label": "Teca — cubierta",
+      "color": "#6b5344"
+    },
+    "stair": {
+      "label": "Haya — escalera",
+      "color": "#9a7352"
+    },
+    "railing": {
+      "label": "Ipe — barandas",
+      "color": "#4e342e"
+    },
+    "__none__": {
+      "label": "Madera genérica",
+      "color": "#a08060"
+    }
+  },
   "phase_labels": {
     "0": "Cimentación",
     "1": "Pilares",
@@ -186,7 +294,11 @@
     "5": "Vigas principales — P2",
     "6": "Viguetas — P2",
     "7": "Amarres — P2",
-    "8": "Entramado — cubierta"
+    "8": "Entramado — cubierta",
+    "9": "Escalera",
+    "10": "Baranda · P1",
+    "11": "Baranda · P2",
+    "12": "Acabados · maderas"
   },
   "category_colors": {
     "foundation": "#95212d",
@@ -203,14 +315,15 @@
     "floor_l2_frame": "#c86810",
     "roof": "#6b7280",
     "__none__": "#64748b",
-    "__temp__": "#38bdf8"
+    "__temp__": "#38bdf8",
+    "stair": "#b45309",
+    "railing": "#475569"
   },
   "summary": {
-    "parts": 529,
-    "with_id": 529,
-    "with_category": 529,
-    "with_phase": 521,
-    "temporary": 8
+    "parts": 540,
+    "with_id": 540,
+    "with_category": 540,
+    "with_phase": 540
   },
   "parts": [
     {
@@ -13334,270 +13447,6 @@
       "notes": ""
     },
     {
-      "obj_ref": "obj_417",
-      "material": "color_temp_plane",
-      "group": "group_417_color_temp_plane",
-      "center": [
-        119.0,
-        18.0,
-        52.0
-      ],
-      "size": [
-        12.0,
-        6.0,
-        4.0
-      ],
-      "bounds": {
-        "min": [
-          113.0,
-          15.0,
-          50.0
-        ],
-        "max": [
-          125.0,
-          21.0,
-          54.0
-        ]
-      },
-      "id": "TMP-P01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:plane",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_418",
-      "material": "color_temp_volume",
-      "group": "group_418_color_temp_volume",
-      "center": [
-        120.0,
-        30.0,
-        52.0
-      ],
-      "size": [
-        10.0,
-        6.0,
-        4.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          27.0,
-          50.0
-        ],
-        "max": [
-          125.0,
-          33.0,
-          54.0
-        ]
-      },
-      "id": "TMP-V01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:volume",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_419",
-      "material": "color_temp_volume",
-      "group": "group_419_color_temp_volume",
-      "center": [
-        121.0,
-        42.0,
-        53.5
-      ],
-      "size": [
-        12.0,
-        6.0,
-        7.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          39.0,
-          50.0
-        ],
-        "max": [
-          127.0,
-          45.0,
-          57.0
-        ]
-      },
-      "id": "TMP-V02",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:volume-skew",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_420",
-      "material": "color_temp_result",
-      "group": "group_420_color_temp_result",
-      "center": [
-        122.0,
-        55.5,
-        53.0
-      ],
-      "size": [
-        14.0,
-        9.0,
-        6.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          51.0,
-          50.0
-        ],
-        "max": [
-          129.0,
-          60.0,
-          56.0
-        ]
-      },
-      "id": "TMP-U01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:boolean-union",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_421",
-      "material": "color_temp_result",
-      "group": "group_421_color_temp_result",
-      "center": [
-        121.0,
-        67.0,
-        53.0
-      ],
-      "size": [
-        12.0,
-        8.0,
-        6.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          63.0,
-          50.0
-        ],
-        "max": [
-          127.0,
-          71.0,
-          56.0
-        ]
-      },
-      "id": "TMP-S01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:boolean-subtract",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_422",
-      "material": "color_temp_result",
-      "group": "group_422_color_temp_result",
-      "center": [
-        122.0,
-        79.5,
-        53.0
-      ],
-      "size": [
-        4.0,
-        5.0,
-        4.0
-      ],
-      "bounds": {
-        "min": [
-          120.0,
-          77.0,
-          51.0
-        ],
-        "max": [
-          124.0,
-          82.0,
-          55.0
-        ]
-      },
-      "id": "TMP-I01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:boolean-intersect",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_423",
-      "material": "color_temp_result",
-      "group": "group_423_color_temp_result",
-      "center": [
-        116.0,
-        88.0,
-        57.5
-      ],
-      "size": [
-        2.0,
-        2.0,
-        15.0
-      ],
-      "bounds": {
-        "min": [
-          115.0,
-          87.0,
-          50.0
-        ],
-        "max": [
-          117.0,
-          89.0,
-          65.0
-        ]
-      },
-      "id": "TMP-E01",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:extend-z",
-      "temporary": true
-    },
-    {
-      "obj_ref": "obj_424",
-      "material": "color_temp_plane",
-      "group": "group_424_color_temp_plane",
-      "center": [
-        61.5,
-        -50.0,
-        77.5
-      ],
-      "size": [
-        113.0,
-        102.0,
-        23.22
-      ],
-      "bounds": {
-        "min": [
-          5.0,
-          -101.0,
-          65.89
-        ],
-        "max": [
-          118.0,
-          1.0,
-          89.11
-        ]
-      },
-      "id": "TMP-RPL",
-      "category": "__temp__",
-      "phase": null,
-      "visible": true,
-      "notes": "demo:roof-plane",
-      "temporary": true
-    },
-    {
       "obj_ref": "obj_425",
       "material": "color_7035299",
       "group": "group_425_color_7035299",
@@ -16935,25 +16784,25 @@
       "material": "color_16089887",
       "group": "group_526_color_16089887",
       "center": [
-        15.31,
+        14.5,
         0.0,
-        74.79
+        75.17
       ],
       "size": [
-        20.64,
+        19.01,
         1.0,
-        32.79
+        31.0
       ],
       "bounds": {
         "min": [
           4.99,
           -0.5,
-          58.4
+          59.67
         ],
         "max": [
-          25.64,
+          24.0,
           0.5,
-          91.19
+          90.67
         ]
       },
       "id": "RD-001",
@@ -16968,25 +16817,25 @@
       "material": "color_16089887",
       "group": "group_527_color_16089887",
       "center": [
-        107.46,
+        107.06,
         0.0,
-        63.44
+        62.87
       ],
       "size": [
-        20.06,
+        16.11,
         1.0,
-        10.13
+        7.9
       ],
       "bounds": {
         "min": [
-          97.43,
+          99.0,
           -0.5,
-          58.38
+          58.92
         ],
         "max": [
-          117.49,
+          115.11,
           0.5,
-          68.5
+          66.82
         ]
       },
       "id": "RD-002",
@@ -17001,25 +16850,25 @@
       "material": "color_16089887",
       "group": "group_528_color_16089887",
       "center": [
-        15.31,
+        14.5,
         -25.0,
-        74.79
+        75.17
       ],
       "size": [
-        20.64,
+        19.01,
         1.0,
-        32.79
+        31.0
       ],
       "bounds": {
         "min": [
           4.99,
           -25.5,
-          58.4
+          59.67
         ],
         "max": [
-          25.64,
+          24.0,
           -24.5,
-          91.19
+          90.67
         ]
       },
       "id": "RD-003",
@@ -17034,25 +16883,25 @@
       "material": "color_16089887",
       "group": "group_529_color_16089887",
       "center": [
-        107.46,
+        107.06,
         -25.0,
-        63.44
+        62.87
       ],
       "size": [
-        20.06,
+        16.11,
         1.0,
-        10.13
+        7.9
       ],
       "bounds": {
         "min": [
-          97.43,
+          99.0,
           -25.5,
-          58.38
+          58.92
         ],
         "max": [
-          117.49,
+          115.11,
           -24.5,
-          68.5
+          66.82
         ]
       },
       "id": "RD-004",
@@ -17067,61 +16916,28 @@
       "material": "color_16089887",
       "group": "group_530_color_16089887",
       "center": [
-        15.31,
+        14.5,
         -50.0,
-        74.79
+        75.17
       ],
       "size": [
-        20.64,
+        19.01,
         1.0,
-        32.79
+        31.0
       ],
       "bounds": {
         "min": [
           4.99,
           -50.5,
-          58.4
+          59.67
         ],
         "max": [
-          25.64,
+          24.0,
           -49.5,
-          91.19
+          90.67
         ]
       },
       "id": "RD-005",
-      "category": "roof",
-      "phase": 8,
-      "visible": true,
-      "notes": "RD",
-      "temporary": false
-    },
-    {
-      "obj_ref": "obj_531",
-      "material": "color_16089887",
-      "group": "group_531_color_16089887",
-      "center": [
-        107.46,
-        -50.0,
-        63.44
-      ],
-      "size": [
-        20.06,
-        1.0,
-        10.13
-      ],
-      "bounds": {
-        "min": [
-          97.43,
-          -50.5,
-          58.38
-        ],
-        "max": [
-          117.49,
-          -49.5,
-          68.5
-        ]
-      },
-      "id": "RD-006",
       "category": "roof",
       "phase": 8,
       "visible": true,
@@ -17133,25 +16949,25 @@
       "material": "color_16089887",
       "group": "group_532_color_16089887",
       "center": [
-        15.31,
+        14.5,
         -75.0,
-        74.79
+        75.17
       ],
       "size": [
-        20.64,
+        19.01,
         1.0,
-        32.79
+        31.0
       ],
       "bounds": {
         "min": [
           4.99,
           -75.5,
-          58.4
+          59.67
         ],
         "max": [
-          25.64,
+          24.0,
           -74.5,
-          91.19
+          90.67
         ]
       },
       "id": "RD-007",
@@ -17166,25 +16982,25 @@
       "material": "color_16089887",
       "group": "group_533_color_16089887",
       "center": [
-        107.46,
+        107.06,
         -75.0,
-        63.44
+        62.87
       ],
       "size": [
-        20.06,
+        16.11,
         1.0,
-        10.13
+        7.9
       ],
       "bounds": {
         "min": [
-          97.43,
+          99.0,
           -75.5,
-          58.38
+          58.92
         ],
         "max": [
-          117.49,
+          115.11,
           -74.5,
-          68.5
+          66.82
         ]
       },
       "id": "RD-008",
@@ -17199,25 +17015,25 @@
       "material": "color_16089887",
       "group": "group_534_color_16089887",
       "center": [
-        15.31,
+        14.5,
         -100.0,
-        74.79
+        75.17
       ],
       "size": [
-        20.64,
+        19.01,
         1.0,
-        32.79
+        31.0
       ],
       "bounds": {
         "min": [
           4.99,
           -100.5,
-          58.4
+          59.67
         ],
         "max": [
-          25.64,
+          24.0,
           -99.5,
-          91.19
+          90.67
         ]
       },
       "id": "RD-009",
@@ -17232,25 +17048,25 @@
       "material": "color_16089887",
       "group": "group_535_color_16089887",
       "center": [
-        107.46,
+        107.06,
         -100.0,
-        63.44
+        62.87
       ],
       "size": [
-        20.06,
+        16.11,
         1.0,
-        10.13
+        7.9
       ],
       "bounds": {
         "min": [
-          97.43,
+          99.0,
           -100.5,
-          58.38
+          58.92
         ],
         "max": [
-          117.49,
+          115.11,
           -99.5,
-          68.5
+          66.82
         ]
       },
       "id": "RD-010",
@@ -17258,6 +17074,666 @@
       "phase": 8,
       "visible": true,
       "notes": "RD",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_556",
+      "material": "color_stair",
+      "group": "group_556_color_stair",
+      "center": [
+        68.5,
+        -25.0,
+        32.23
+      ],
+      "size": [
+        15.0,
+        1.0,
+        1.96
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -25.5,
+          31.25
+        ],
+        "max": [
+          76.0,
+          -24.5,
+          33.21
+        ]
+      },
+      "id": "EM-001",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EM",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_557",
+      "material": "color_stair",
+      "group": "group_557_color_stair",
+      "center": [
+        61.0,
+        -37.69,
+        25.45
+      ],
+      "size": [
+        1.0,
+        23.39,
+        16.53
+      ],
+      "bounds": {
+        "min": [
+          60.5,
+          -49.39,
+          17.18
+        ],
+        "max": [
+          61.5,
+          -26.0,
+          33.71
+        ]
+      },
+      "id": "EP-001",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EP",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_558",
+      "material": "color_stair",
+      "group": "group_558_color_stair",
+      "center": [
+        76.0,
+        -37.75,
+        39.04
+      ],
+      "size": [
+        1.0,
+        23.5,
+        12.65
+      ],
+      "bounds": {
+        "min": [
+          75.5,
+          -49.5,
+          32.71
+        ],
+        "max": [
+          76.5,
+          -26.0,
+          45.36
+        ]
+      },
+      "id": "EP-002",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EP",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_559",
+      "material": "color_stair",
+      "group": "group_559_color_stair",
+      "center": [
+        68.5,
+        -31.0,
+        33.09
+      ],
+      "size": [
+        15.0,
+        10.0,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -36.0,
+          32.96
+        ],
+        "max": [
+          76.0,
+          -26.0,
+          33.21
+        ]
+      },
+      "id": "ED-001",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "ED",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_560",
+      "material": "color_stair",
+      "group": "group_560_color_stair",
+      "center": [
+        64.75,
+        -48.07,
+        19.34
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -49.0,
+          19.21
+        ],
+        "max": [
+          68.5,
+          -47.14,
+          19.46
+        ]
+      },
+      "id": "EH-001",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_561",
+      "material": "color_stair",
+      "group": "group_561_color_stair",
+      "center": [
+        64.75,
+        -46.21,
+        21.3
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -47.14,
+          21.18
+        ],
+        "max": [
+          68.5,
+          -45.29,
+          21.43
+        ]
+      },
+      "id": "EH-002",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_562",
+      "material": "color_stair",
+      "group": "group_562_color_stair",
+      "center": [
+        64.75,
+        -44.36,
+        23.27
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -45.29,
+          23.14
+        ],
+        "max": [
+          68.5,
+          -43.43,
+          23.39
+        ]
+      },
+      "id": "EH-003",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_563",
+      "material": "color_stair",
+      "group": "group_563_color_stair",
+      "center": [
+        64.75,
+        -42.5,
+        25.23
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -43.43,
+          25.11
+        ],
+        "max": [
+          68.5,
+          -41.57,
+          25.36
+        ]
+      },
+      "id": "EH-004",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_564",
+      "material": "color_stair",
+      "group": "group_564_color_stair",
+      "center": [
+        64.75,
+        -40.64,
+        27.2
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -41.57,
+          27.07
+        ],
+        "max": [
+          68.5,
+          -39.71,
+          27.32
+        ]
+      },
+      "id": "EH-005",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_565",
+      "material": "color_stair",
+      "group": "group_565_color_stair",
+      "center": [
+        64.75,
+        -38.79,
+        29.16
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -39.71,
+          29.04
+        ],
+        "max": [
+          68.5,
+          -37.86,
+          29.29
+        ]
+      },
+      "id": "EH-006",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_566",
+      "material": "color_stair",
+      "group": "group_566_color_stair",
+      "center": [
+        64.75,
+        -36.93,
+        31.12
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          61.0,
+          -37.86,
+          31.0
+        ],
+        "max": [
+          68.5,
+          -36.0,
+          31.25
+        ]
+      },
+      "id": "EH-007",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_567",
+      "material": "color_stair",
+      "group": "group_567_color_stair",
+      "center": [
+        72.25,
+        -36.93,
+        33.09
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          68.5,
+          -37.86,
+          32.96
+        ],
+        "max": [
+          76.0,
+          -36.0,
+          33.21
+        ]
+      },
+      "id": "EH-008",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_568",
+      "material": "color_stair",
+      "group": "group_568_color_stair",
+      "center": [
+        72.25,
+        -38.79,
+        35.05
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          68.5,
+          -39.71,
+          34.93
+        ],
+        "max": [
+          76.0,
+          -37.86,
+          35.18
+        ]
+      },
+      "id": "EH-009",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_569",
+      "material": "color_stair",
+      "group": "group_569_color_stair",
+      "center": [
+        72.25,
+        -40.64,
+        37.02
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          68.5,
+          -41.57,
+          36.89
+        ],
+        "max": [
+          76.0,
+          -39.71,
+          37.14
+        ]
+      },
+      "id": "EH-010",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_570",
+      "material": "color_stair",
+      "group": "group_570_color_stair",
+      "center": [
+        72.25,
+        -42.5,
+        38.98
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          68.5,
+          -43.43,
+          38.86
+        ],
+        "max": [
+          76.0,
+          -41.57,
+          39.11
+        ]
+      },
+      "id": "EH-011",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_571",
+      "material": "color_stair",
+      "group": "group_571_color_stair",
+      "center": [
+        72.25,
+        -44.36,
+        40.95
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          68.5,
+          -45.29,
+          40.82
+        ],
+        "max": [
+          76.0,
+          -43.43,
+          41.07
+        ]
+      },
+      "id": "EH-012",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_572",
+      "material": "color_stair",
+      "group": "group_572_color_stair",
+      "center": [
+        72.25,
+        -46.21,
+        42.91
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          68.5,
+          -47.14,
+          42.79
+        ],
+        "max": [
+          76.0,
+          -45.29,
+          43.04
+        ]
+      },
+      "id": "EH-013",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_573",
+      "material": "color_stair",
+      "group": "group_573_color_stair",
+      "center": [
+        72.25,
+        -48.07,
+        44.88
+      ],
+      "size": [
+        7.5,
+        1.86,
+        0.25
+      ],
+      "bounds": {
+        "min": [
+          68.5,
+          -49.0,
+          44.75
+        ],
+        "max": [
+          76.0,
+          -47.14,
+          45.0
+        ]
+      },
+      "id": "EH-014",
+      "category": "stair",
+      "phase": 9,
+      "visible": true,
+      "notes": "EH",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_574",
+      "material": "color_railing",
+      "group": "group_574_color_railing",
+      "center": [
+        17.5,
+        -24.75,
+        52.67
+      ],
+      "size": [
+        13.9,
+        50.4,
+        15.35
+      ],
+      "bounds": {
+        "min": [
+          10.55,
+          -49.95,
+          45.0
+        ],
+        "max": [
+          24.45,
+          0.45,
+          60.35
+        ]
+      },
+      "id": "BR-001",
+      "category": "railing",
+      "phase": 11,
+      "visible": true,
+      "notes": "BR",
+      "temporary": false
+    },
+    {
+      "obj_ref": "obj_575",
+      "material": "color_railing",
+      "group": "group_575_color_railing",
+      "center": [
+        12.0,
+        -50.0,
+        21.68
+      ],
+      "size": [
+        24.9,
+        100.9,
+        15.35
+      ],
+      "bounds": {
+        "min": [
+          -0.45,
+          -100.45,
+          14.0
+        ],
+        "max": [
+          24.45,
+          0.45,
+          29.35
+        ]
+      },
+      "id": "BR-002",
+      "category": "railing",
+      "phase": 10,
+      "visible": true,
+      "notes": "BR",
       "temporary": false
     }
   ]

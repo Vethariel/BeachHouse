@@ -1,4 +1,4 @@
-"""Subtract diagonal braces from voladizo correas and support pillars."""
+"""Recorte de diagonales con copias temporales de correa voladizo y pilar de apoyo."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import trimesh
 
 from model.geom.solid import Solid
 from model.obj_edit import solid_from_obj_ref
-from model.roof.framing import FramingSpec, ROOF_ROWS_Y
+from model.roof.framing import EXCLUDED_DIAGONAL_IDS, FramingSpec, ROOF_ROWS_Y
 
 HIGH_PILLAR_BY_Y = {
     0.0: "PIL-002",
@@ -48,7 +48,9 @@ def diagonal_links() -> list[tuple[str, str, str]]:
                 LOW_PILLAR_BY_Y[y],
             )
         )
-    return links
+    return [
+        link for link in links if link[0] not in EXCLUDED_DIAGONAL_IDS
+    ]
 
 
 def _normalize_trimesh_result(result) -> list[trimesh.Trimesh]:
@@ -74,7 +76,7 @@ def _intersection_volume(base: Solid, cutter: Solid) -> float:
 
 
 def _difference_largest(base: Solid, cutter: Solid) -> Solid:
-    """Resta cutter de base; conserva el fragmento mayor. Usa la malla exacta del cutter."""
+    """Resta cutter de base; conserva el fragmento mayor."""
     if _intersection_volume(base, cutter) < INTERSECT_MIN_VOLUME:
         return base
 
@@ -95,63 +97,84 @@ def _difference_largest(base: Solid, cutter: Solid) -> Solid:
             last_error = err
             continue
 
-    raise RuntimeError("No se pudo restar la diagonal del sólido.") from last_error
+    raise RuntimeError("No se pudo recortar la diagonal.") from last_error
 
 
-def apply_diagonal_cutouts(
+def temporary_support_solids(
+    obj_path: Path,
+    id_to_ref: dict[str, str],
+    rf_id: str,
+    pillar_id: str,
+) -> tuple[Solid, Solid]:
+    """Copias temporales en memoria de la correa voladizo y el pilar (sin alterar el OBJ)."""
+    rf_temp = solid_from_obj_ref(obj_path, id_to_ref[rf_id], strict=False)
+    pillar_temp = solid_from_obj_ref(obj_path, id_to_ref[pillar_id], strict=False)
+    return rf_temp, pillar_temp
+
+
+def clip_diagonal_with_supports(
+    diagonal: Solid,
+    rf_temp: Solid,
+    pillar_temp: Solid,
+) -> Solid:
+    """Resta copias temporales de pilar y correa de la diagonal."""
+    clipped = _difference_largest(diagonal, pillar_temp)
+    return _difference_largest(clipped, rf_temp)
+
+
+def _catalog_maps(parts_path: Path) -> tuple[dict[str, str], dict[str, str]]:
+    catalog = json.loads(parts_path.read_text(encoding="utf-8"))
+    id_to_ref = {part["id"]: part["obj_ref"] for part in catalog["parts"] if part.get("id")}
+    id_to_material = {
+        part["id"]: part["material"] for part in catalog["parts"] if part.get("id")
+    }
+    return id_to_ref, id_to_material
+
+
+def apply_diagonal_clips_to_specs(
     specs: list[FramingSpec],
     obj_path: Path,
     parts_path: Path,
-) -> tuple[list[FramingSpec], dict[str, dict]]:
-    """Notch RF/pillar and clip each diagonal to the exterior of both."""
-    catalog = json.loads(parts_path.read_text(encoding="utf-8"))
-    id_to_ref = {part["id"]: part["obj_ref"] for part in catalog["parts"] if part.get("id")}
-    id_to_material = {part["id"]: part["material"] for part in catalog["parts"] if part.get("id")}
-
-    rf_by_id = {spec.part_id: spec for spec in specs if spec.part_id.startswith("RF-")}
+) -> list[FramingSpec]:
+    """Recorta cada RD usando copias temporales de su RF voladizo y pilar de apoyo."""
+    id_to_ref, _ = _catalog_maps(parts_path)
     rd_by_id = {spec.part_id: spec for spec in specs if spec.part_id.startswith("RD-")}
 
-    pillar_solids: dict[str, Solid] = {}
-    pillar_refs: dict[str, str] = {}
+    for rd_id, rf_id, pillar_id in diagonal_links():
+        rf_temp, pillar_temp = temporary_support_solids(
+            obj_path, id_to_ref, rf_id, pillar_id
+        )
+        spec = rd_by_id[rd_id]
+        clipped = clip_diagonal_with_supports(spec.solid, rf_temp, pillar_temp)
+        rd_by_id[rd_id] = FramingSpec(rd_id, clipped, spec.material)
+
+    updated: list[FramingSpec] = []
+    for spec in specs:
+        if spec.part_id.startswith("RD-"):
+            updated.append(rd_by_id[spec.part_id])
+        else:
+            updated.append(spec)
+    return updated
+
+
+def clip_diagonals_in_obj(
+    obj_path: Path,
+    parts_path: Path,
+) -> dict[str, dict]:
+    """Recorta diagonales ya presentes en el OBJ. Devuelve meshes para replace_objects."""
+    id_to_ref, id_to_material = _catalog_maps(parts_path)
+    replacements: dict[str, dict] = {}
 
     for rd_id, rf_id, pillar_id in diagonal_links():
-        diagonal = rd_by_id[rd_id].solid
-        rf_spec = rf_by_id[rf_id]
-
-        if pillar_id not in pillar_solids:
-            obj_ref = id_to_ref[pillar_id]
-            pillar_refs[pillar_id] = obj_ref
-            pillar_solids[pillar_id] = solid_from_obj_ref(obj_path, obj_ref, strict=False)
-
-        pillar = pillar_solids[pillar_id]
-        rf_solid = rf_spec.solid
-
-        rf_by_id[rf_id] = FramingSpec(
-            rf_id,
-            _difference_largest(rf_solid, diagonal),
-            rf_spec.material,
+        rd_ref = id_to_ref[rd_id]
+        diagonal = solid_from_obj_ref(obj_path, rd_ref, strict=False)
+        rf_temp, pillar_temp = temporary_support_solids(
+            obj_path, id_to_ref, rf_id, pillar_id
         )
-        pillar_solids[pillar_id] = _difference_largest(pillar, diagonal)
-
-        clipped = _difference_largest(diagonal, pillar)
-        clipped = _difference_largest(clipped, rf_solid)
-        rd_by_id[rd_id] = FramingSpec(rd_id, clipped, rd_by_id[rd_id].material)
-
-    pillar_replacements = {
-        pillar_refs[pillar_id]: pillar_solids[pillar_id].to_mesh(
-            material=id_to_material[pillar_id],
+        clipped = clip_diagonal_with_supports(diagonal, rf_temp, pillar_temp)
+        replacements[rd_ref] = clipped.to_mesh(
+            material=id_to_material[rd_id],
             validate=False,
         )
-        for pillar_id in pillar_solids
-    }
 
-    updated_specs: list[FramingSpec] = []
-    for spec in specs:
-        if spec.part_id.startswith("RF-"):
-            updated_specs.append(rf_by_id[spec.part_id])
-        elif spec.part_id.startswith("RD-"):
-            updated_specs.append(rd_by_id[spec.part_id])
-        else:
-            updated_specs.append(spec)
-
-    return updated_specs, pillar_replacements
+    return replacements

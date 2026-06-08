@@ -1,0 +1,18 @@
+{
+  "id": 68,
+  "slug": "antes-pelda-os-escalera-eh-001-014-fase-e",
+  "created_at": "2026-06-08T00:15:48+00:00",
+  "message": "antes: peldaños escalera EH-001…014 (fase E)",
+  "auto": true,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 533,
+    "with_category": 533,
+    "with_phase": 524
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": 85,
+  "slug": "despu-s-baranda-br-001-vano-p2-v2-031-033-034-03",
+  "created_at": "2026-06-08T00:41:28+00:00",
+  "message": "después: baranda BR-001 vano P2 V2-031/033/034/035",
+  "auto": false,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 539,
+    "with_category": 539,
+    "with_phase": 539
+  }
+}

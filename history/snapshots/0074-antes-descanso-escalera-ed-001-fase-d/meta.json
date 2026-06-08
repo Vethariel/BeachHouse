@@ -1,0 +1,18 @@
+{
+  "id": 74,
+  "slug": "antes-descanso-escalera-ed-001-fase-d",
+  "created_at": "2026-06-08T00:21:25+00:00",
+  "message": "antes: descanso escalera ED-001 (fase D)",
+  "auto": true,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 546,
+    "with_category": 546,
+    "with_phase": 537
+  }
+}

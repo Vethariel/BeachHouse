@@ -1,0 +1,18 @@
+{
+  "id": 83,
+  "slug": "despu-s-eliminar-objetos-temporales-del-espacio",
+  "created_at": "2026-06-08T00:32:09+00:00",
+  "message": "después: eliminar objetos temporales del espacio",
+  "auto": false,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 538,
+    "with_category": 538,
+    "with_phase": 538
+  }
+}

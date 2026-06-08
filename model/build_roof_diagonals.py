@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from model.obj_edit import append_objects, remove_objects
+from model.roof.diagonal_cuts import apply_diagonal_clips_to_specs
 from model.roof.framing import (
     DIAGONAL_PILLAR_EXTEND,
     DIAGONAL_ROOF_INSET,
@@ -70,7 +71,8 @@ def main() -> int:
         print(f"Eliminadas {removed} diagonales previas")
 
     specs = generate_roof_diagonals()
-    meshes = [spec.solid.to_mesh(material=spec.material) for spec in specs]
+    specs = apply_diagonal_clips_to_specs(specs, OBJ_PATH, PARTS_PATH)
+    meshes = [spec.solid.to_mesh(material=spec.material, validate=False) for spec in specs]
     print(
         f"Generando {len(specs)} diagonales "
         f"(inset voladizo {DIAGONAL_ROOF_INSET} u., extensión pilar {DIAGONAL_PILLAR_EXTEND} u.)…"

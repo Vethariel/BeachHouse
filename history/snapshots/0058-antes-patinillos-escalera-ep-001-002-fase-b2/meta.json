@@ -1,0 +1,18 @@
+{
+  "id": 58,
+  "slug": "antes-patinillos-escalera-ep-001-002-fase-b2",
+  "created_at": "2026-06-07T23:52:27+00:00",
+  "message": "antes: patinillos escalera EP-001/002 (fase B2)",
+  "auto": true,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 530,
+    "with_category": 530,
+    "with_phase": 521
+  }
+}

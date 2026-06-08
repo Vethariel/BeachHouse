@@ -1,0 +1,18 @@
+{
+  "id": 89,
+  "slug": "despu-s-baranda-br-002-vano-p1-v1-004-016-024-02",
+  "created_at": "2026-06-08T00:46:52+00:00",
+  "message": "después: baranda BR-002 vano P1 V1-004/016/024/029/034/040",
+  "auto": false,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 540,
+    "with_category": 540,
+    "with_phase": 540
+  }
+}

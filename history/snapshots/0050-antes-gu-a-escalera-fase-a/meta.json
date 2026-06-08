@@ -1,0 +1,18 @@
+{
+  "id": 50,
+  "slug": "antes-gu-a-escalera-fase-a",
+  "created_at": "2026-06-07T23:37:20+00:00",
+  "message": "antes: guía escalera (fase A)",
+  "auto": true,
+  "files": [
+    "tinker.obj",
+    "obj.mtl",
+    "catalog/categories.json",
+    "catalog/parts.json"
+  ],
+  "stats": {
+    "parts": 527,
+    "with_category": 527,
+    "with_phase": 520
+  }
+}

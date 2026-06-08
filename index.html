@@ -4,19 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BeachHouse — Visualizador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f1419;
-      --panel: #1a2332;
-      --border: #2d3a4f;
-      --text: #e7ecf3;
-      --muted: #8b9cb3;
-      --accent: #3b82f6;
+      --bg: #e8f4f2;
+      --bg-deep: #cce8e4;
+      --panel: rgba(255, 252, 247, 0.94);
+      --panel-solid: #fffaf4;
+      --border: rgba(13, 148, 136, 0.18);
+      --border-strong: rgba(13, 148, 136, 0.35);
+      --text: #1e3d42;
+      --muted: #5f7c82;
+      --accent: #0d9488;
+      --accent-hover: #0f766e;
+      --coral: #e07a5f;
+      --coral-soft: rgba(224, 122, 95, 0.15);
+      --sand: #f4e4c8;
+      --sand-dark: #d4b896;
+      --ocean: #0891b2;
+      --palm: #2d6a4f;
+      --sun: #f4a261;
+      --shadow: 0 8px 32px rgba(30, 61, 66, 0.08);
+      --radius: 12px;
+      --radius-sm: 8px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Segoe UI", system-ui, sans-serif;
-      background: var(--bg);
+      font-family: "Outfit", "Segoe UI", system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 120% 80% at 100% 0%, rgba(135, 206, 235, 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 60% at 0% 100%, rgba(244, 228, 200, 0.7) 0%, transparent 50%),
+        linear-gradient(165deg, var(--bg) 0%, var(--sand) 45%, var(--bg-deep) 100%);
       color: var(--text);
       overflow: hidden;
       height: 100vh;
@@ -26,47 +46,161 @@
     }
     aside {
       background: var(--panel);
+      backdrop-filter: blur(12px);
       border-right: 1px solid var(--border);
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      position: relative;
+    }
+    aside::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--palm), var(--accent), var(--ocean), var(--sun), var(--coral));
+      z-index: 1;
     }
     header {
-      padding: 16px;
+      padding: 20px 18px 16px;
       border-bottom: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(13, 148, 136, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(255, 250, 244, 0.9) 0%, transparent 100%);
     }
-    header h1 { font-size: 1rem; font-weight: 600; }
-    header p { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
-    .controls { padding: 12px 16px; border-bottom: 1px solid var(--border); display: grid; gap: 10px; }
+    header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, var(--accent) 0%, var(--ocean) 100%);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.35);
+      flex-shrink: 0;
+    }
+    header h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    header p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 6px;
+      padding-left: 46px;
+    }
+    .controls {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      gap: 12px;
+    }
     .mode-toggle {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      gap: 8px;
+      padding: 4px;
+      background: var(--sand);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
     }
-    .mode-toggle button, .row button, .toolbar button, .parts-list-header button {
-      background: #243044;
+    .mode-toggle button,
+    .row button,
+    .toolbar button,
+    .parts-list-header button {
+      background: var(--panel-solid);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 8px 10px;
-      border-radius: 6px;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       font-size: 0.82rem;
+      font-family: inherit;
+      font-weight: 500;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.15s;
     }
-    .mode-toggle button.active, .toolbar button.active {
-      background: var(--accent);
-      border-color: var(--accent);
+    .mode-toggle button:hover,
+    .row button:hover,
+    .toolbar button:hover,
+    .parts-list-header button:hover {
+      border-color: var(--border-strong);
+      background: #fff;
     }
-    label { font-size: 0.75rem; color: var(--muted); display: block; margin-bottom: 4px; }
-    input[type="range"] { width: 100%; }
-    .row { display: flex; gap: 8px; align-items: center; }
-    .phase-name { font-size: 0.85rem; min-height: 1.2em; }
-    .stats { font-size: 0.75rem; color: var(--muted); padding: 0 16px 8px; }
-    .section-label {
+    .mode-toggle button:active,
+    .row button:active {
+      transform: scale(0.98);
+    }
+    .mode-toggle button.active,
+    .toolbar button.active {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--ocean) 100%);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
+    }
+    label {
       font-size: 0.72rem;
       color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .row { display: flex; gap: 8px; align-items: center; }
+    .row button {
+      flex: 1;
+    }
+    #btn-play {
+      background: linear-gradient(135deg, var(--coral) 0%, #d4694f 100%);
+      border-color: transparent;
+      color: #fff;
+    }
+    #btn-play:hover {
+      background: linear-gradient(135deg, #e88970 0%, var(--coral) 100%);
+      color: #fff;
+    }
+    .phase-name {
+      font-size: 0.88rem;
+      min-height: 1.2em;
+      color: var(--accent-hover);
+      font-weight: 500;
+    }
+    .audio-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      min-height: 1.1em;
+    }
+    .stats {
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding: 0 16px 8px;
+      line-height: 1.45;
+    }
+    .section-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       padding: 0 16px 6px;
+      font-weight: 600;
     }
     .category-list {
       max-height: 220px;
@@ -74,34 +208,55 @@
       padding: 0 8px 8px;
       border-bottom: 1px solid var(--border);
     }
+    .category-list::-webkit-scrollbar,
+    .parts-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .category-list::-webkit-scrollbar-thumb,
+    .parts-list::-webkit-scrollbar-thumb {
+      background: var(--sand-dark);
+      border-radius: 3px;
+    }
     .category-item {
       display: grid;
       grid-template-columns: 12px 1fr auto;
       gap: 8px;
       align-items: center;
-      padding: 7px 8px;
-      border-radius: 6px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       font-size: 0.78rem;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
+      border: 1px solid transparent;
+      transition: background 0.12s, border-color 0.12s;
     }
-    .category-item:hover { background: #243044; }
+    .category-item:hover {
+      background: var(--sand);
+      border-color: var(--border);
+    }
     .category-item.active {
-      background: #2a4060;
-      outline: 1px solid var(--accent);
+      background: rgba(13, 148, 136, 0.1);
+      border-color: var(--accent);
+      outline: none;
     }
     .category-count {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--muted);
       font-family: ui-monospace, monospace;
+      background: var(--sand);
+      padding: 2px 6px;
+      border-radius: 999px;
     }
     .parts-list-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 16px 4px;
+      padding: 10px 16px 4px;
       font-size: 0.72rem;
       color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .parts-list {
       flex: 1;
@@ -113,18 +268,39 @@
       grid-template-columns: 12px 1fr auto;
       gap: 8px;
       align-items: center;
-      padding: 6px 8px;
-      border-radius: 6px;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       font-size: 0.78rem;
+      border: 1px solid transparent;
+      transition: background 0.12s, border-color 0.12s;
     }
-    .part-item:hover { background: #243044; }
-    .part-item.selected { background: #2a4060; outline: 1px solid var(--accent); }
+    .part-item:hover {
+      background: var(--sand);
+      border-color: var(--border);
+    }
+    .part-item.selected {
+      background: rgba(13, 148, 136, 0.12);
+      border-color: var(--accent);
+      outline: none;
+    }
     .part-item.hidden-part { opacity: 0.35; }
     .part-item.dimmed { opacity: 0.45; }
-    .part-item.category-match { outline: 1px solid rgba(147, 197, 253, 0.45); }
-    .swatch { width: 12px; height: 12px; border-radius: 2px; }
-    .part-id { font-family: ui-monospace, monospace; font-weight: 600; }
+    .part-item.category-match {
+      border-color: rgba(13, 148, 136, 0.4);
+      background: rgba(13, 148, 136, 0.06);
+    }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+    }
+    .part-id {
+      font-family: ui-monospace, monospace;
+      font-weight: 600;
+      color: var(--text);
+    }
     .part-meta { color: var(--muted); font-size: 0.7rem; }
     #viewport {
       position: relative;
@@ -144,59 +320,87 @@
     }
     .toolbar {
       position: absolute;
-      top: 12px;
-      right: 12px;
+      top: 16px;
+      right: 16px;
       display: flex;
-      gap: 6px;
+      gap: 8px;
       z-index: 10;
+    }
+    .toolbar button {
+      background: rgba(255, 252, 247, 0.92);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      border-color: var(--border);
     }
     .loading {
       position: absolute;
       inset: 0;
-      display: grid;
-      place-items: center;
-      background: rgba(15,20,25,0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: linear-gradient(165deg, rgba(232, 244, 242, 0.92) 0%, rgba(244, 228, 200, 0.88) 100%);
       z-index: 20;
+      font-weight: 500;
+      color: var(--accent-hover);
+      letter-spacing: 0.02em;
     }
+    .loading::before {
+      content: "";
+      width: 44px;
+      height: 44px;
+      border: 3px solid var(--sand-dark);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
     .selection-panel {
       position: absolute;
-      bottom: 16px;
-      left: 16px;
-      background: rgba(26, 35, 50, 0.96);
-      border: 1px solid var(--accent);
-      border-radius: 8px;
-      padding: 12px 16px;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 252, 247, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--coral);
+      border-radius: var(--radius);
+      padding: 14px 18px;
       z-index: 10;
-      min-width: 220px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      min-width: 240px;
+      box-shadow: var(--shadow);
     }
     .selection-panel[hidden] { display: none; }
     .selection-panel .selection-kicker {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       margin-bottom: 4px;
+      font-weight: 600;
     }
     .selection-panel .selection-id {
-      font-family: ui-monospace, monospace;
-      font-size: 1.15rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: #93c5fd;
+      color: var(--accent-hover);
       margin-bottom: 6px;
     }
     .selection-panel .selection-meta {
       font-size: 0.75rem;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
   <aside>
     <header>
-      <h1>BeachHouse</h1>
-      <p>Visualizador OBJ + catálogo semántico</p>
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🌴</div>
+        <h1>BeachHouse</h1>
+      </div>
+      <p>Casa de madera · visualizador y animación</p>
     </header>
     <div class="controls">
       <div class="mode-toggle">
@@ -211,12 +415,13 @@
           <button id="btn-play">▶ Reproducir</button>
           <button id="btn-reset">↺ Reiniciar</button>
         </div>
+        <div class="audio-label" id="audio-label">♪ wasteland · Calamity Mod</div>
       </div>
       <div id="model-controls">
         <p class="section-label">Categorías</p>
         <div class="category-list" id="category-list"></div>
       </div>
-      <p class="stats">Clic en pieza para seleccionar · clic en categoría para revisar clasificación.</p>
+      <p class="stats">Selecciona una pieza o filtra por categoría para revisar el catálogo.</p>
     </div>
     <div class="stats" id="stats"></div>
     <div class="parts-list-header">
@@ -252,9 +457,104 @@
     import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
     import { MTLLoader } from "three/addons/loaders/MTLLoader.js";
 
-    const HIGHLIGHT_COLOR = 0x3b82f6;
-    const HIGHLIGHT_EMISSIVE = 0x2563eb;
+    const HIGHLIGHT_COLOR = 0x0d9488;
+    const HIGHLIGHT_EMISSIVE = 0x0f766e;
     const DEFAULT_PHASE_DURATION_MS = 3000;
+
+    const animationAudio = (() => {
+      const TRACK_URL = "assets/audio/wasteland.mp3";
+      const TARGET_VOLUME = 0.72;
+      const FADE_IN_S = 1.4;
+      const FADE_OUT_S = 1.0;
+
+      let audio = null;
+      let active = false;
+      let fadeRaf = null;
+      let trackReady = false;
+
+      function init() {
+        if (audio) return;
+        audio = new Audio(TRACK_URL);
+        audio.loop = true;
+        audio.preload = "auto";
+        audio.volume = 0;
+        audio.addEventListener("canplaythrough", () => {
+          trackReady = true;
+          updateAudioLabel();
+        }, { once: true });
+        audio.addEventListener("error", () => {
+          trackReady = false;
+          updateAudioLabel(true);
+        });
+        updateAudioLabel();
+      }
+
+      function updateAudioLabel(errored = false) {
+        const el = document.getElementById("audio-label");
+        if (!el) return;
+        if (errored) {
+          el.textContent = "Audio no disponible";
+          return;
+        }
+        el.textContent = trackReady
+          ? "♪ wasteland · Calamity Mod"
+          : "Cargando audio…";
+      }
+
+      function clampVolume(value) {
+        return Math.min(1, Math.max(0, value));
+      }
+
+      function fadeVolume(to, seconds, onDone) {
+        if (!audio) return;
+        if (fadeRaf) cancelAnimationFrame(fadeRaf);
+        const from = clampVolume(audio.volume);
+        const target = clampVolume(to);
+        const start = performance.now();
+        const duration = Math.max(0.05, seconds) * 1000;
+        const step = (now) => {
+          const t = Math.min(1, (now - start) / duration);
+          audio.volume = clampVolume(from + (target - from) * t);
+          if (t < 1) {
+            fadeRaf = requestAnimationFrame(step);
+            return;
+          }
+          audio.volume = target;
+          fadeRaf = null;
+          onDone?.();
+        };
+        fadeRaf = requestAnimationFrame(step);
+      }
+
+      async function start() {
+        init();
+        if (!audio) return;
+        if (active && !audio.paused && audio.volume > 0.01) return;
+        active = true;
+        try {
+          await audio.play();
+        } catch (err) {
+          console.warn("No se pudo iniciar el audio:", err);
+        }
+        fadeVolume(TARGET_VOLUME, FADE_IN_S);
+      }
+
+      function stop() {
+        if (!active || !audio) return;
+        active = false;
+        fadeVolume(0, FADE_OUT_S, () => {
+          audio.volume = 0;
+          audio.pause();
+          audio.currentTime = 0;
+        });
+      }
+
+      function isActive() {
+        return active;
+      }
+
+      return { init, start, stop, isActive };
+    })();
 
     const state = {
       mode: "model",
@@ -272,6 +572,7 @@
       playTimer: null,
       phasePartsMap: new Map(),
       phaseDefs: new Map(),
+      materialsPhaseId: null,
       anim: {
         phase: 0,
         step: 0,
@@ -279,6 +580,8 @@
         playing: false,
         pauseUntil: 0,
         previewAllInPhase: false,
+        materialsTransition: null,
+        materialsComplete: false,
       },
       modelCamera: null,
       animCamera: {
@@ -316,27 +619,203 @@
     };
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0f1419);
+    const constructionBg = new THREE.Color(0xd4ebe8);
+    scene.background = constructionBg.clone();
     const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 2000);
     camera.up.set(0, 0, 1);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     els.canvasHost.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.target.set(0, 0, 0);
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.75));
-    const dir = new THREE.DirectionalLight(0xffffff, 0.9);
-    dir.position.set(60, -40, 100);
-    scene.add(dir);
-    const fill = new THREE.DirectionalLight(0xffffff, 0.35);
-    fill.position.set(-80, 60, 40);
-    scene.add(fill);
+    function makeProceduralSandTexture() {
+      const size = 512;
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ddd0b0";
+      ctx.fillRect(0, 0, size, size);
+      const img = ctx.getImageData(0, 0, size, size);
+      for (let y = 0; y < size; y += 1) {
+        for (let x = 0; x < size; x += 1) {
+          const i = (y * size + x) * 4;
+          const grain = (Math.random() - 0.5) * 22;
+          const streak = Math.sin(x * 0.04 + y * 0.02) * 6;
+          img.data[i] = Math.min(255, Math.max(0, 198 + grain + streak));
+          img.data[i + 1] = Math.min(255, Math.max(0, 186 + grain * 0.9 + streak));
+          img.data[i + 2] = Math.min(255, Math.max(0, 158 + grain * 0.7 + streak * 0.5));
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(14, 14);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      return tex;
+    }
 
-    const grid = new THREE.GridHelper(140, 28, 0x334155, 0x1e293b);
+    function makeWaterGradientTexture() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 64;
+      const ctx = canvas.getContext("2d");
+      const grad = ctx.createLinearGradient(0, 0, 512, 0);
+      grad.addColorStop(0, "#0c4a6e");
+      grad.addColorStop(0.35, "#0e7490");
+      grad.addColorStop(0.7, "#0891b2");
+      grad.addColorStop(1, "#67c4d6");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 512, 64);
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.ClampToEdgeWrapping;
+      tex.repeat.set(2.5, 1);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      return tex;
+    }
+
+    function createAtmosphericSky() {
+      const geometry = new THREE.SphereGeometry(750, 48, 24);
+      const material = new THREE.ShaderMaterial({
+        side: THREE.BackSide,
+        depthWrite: false,
+        fog: false,
+        transparent: true,
+        depthWrite: false,
+        uniforms: {
+          sunDirection: { value: new THREE.Vector3(0.55, -0.35, 0.42).normalize() },
+          sunColor: { value: new THREE.Color(0xffe8c8) },
+          zenithColor: { value: new THREE.Color(0x5a7a9e) },
+          horizonColor: { value: new THREE.Color(0xf0c080) },
+          nadirColor: { value: new THREE.Color(0xe8b878) },
+          opacity: { value: 0 },
+        },
+        vertexShader: `
+          varying vec3 vDir;
+          void main() {
+            vDir = normalize(position);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform vec3 sunDirection;
+          uniform vec3 sunColor;
+          uniform vec3 zenithColor;
+          uniform vec3 horizonColor;
+          uniform vec3 nadirColor;
+          uniform float opacity;
+          varying vec3 vDir;
+          void main() {
+            vec3 dir = normalize(vDir);
+            float elevation = dir.z;
+            float aboveHorizon = smoothstep(-0.02, 0.18, elevation);
+            float midSky = smoothstep(0.05, 0.55, elevation);
+            float zenith = smoothstep(0.35, 0.9, elevation);
+            vec3 sky = mix(nadirColor, horizonColor, aboveHorizon);
+            sky = mix(sky, mix(horizonColor, zenithColor, 0.55), midSky);
+            sky = mix(sky, zenithColor, zenith);
+            float sunAlign = max(dot(dir, normalize(sunDirection)), 0.0);
+            float disc = pow(sunAlign, 1100.0) * 1.1;
+            float corona = pow(sunAlign, 72.0) * 0.045;
+            float glow = pow(sunAlign, 10.0) * 0.018;
+            sky += sunColor * (disc + corona + glow);
+            float haze = exp(-abs(elevation) * 9.0) * 0.1;
+            sky = mix(sky, horizonColor, haze);
+            gl_FragColor = vec4(sky, opacity);
+          }
+        `,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.frustumCulled = false;
+      mesh.renderOrder = -2;
+      return { mesh, material };
+    }
+
+    const beachSkyFallback = new THREE.Color(0xe8c898);
+    const beachFog = new THREE.FogExp2(0xd8c4a8, 0.0028);
+    const sandTexture = makeProceduralSandTexture();
+    const waterTexture = makeWaterGradientTexture();
+    const atmosphericSky = createAtmosphericSky();
+
+    const constructionLights = new THREE.Group();
+    constructionLights.name = "constructionLights";
+    const ambient = new THREE.AmbientLight(0xfff8f0, 0.78);
+    const dir = new THREE.DirectionalLight(0xffffff, 0.88);
+    dir.position.set(60, -40, 100);
+    const fill = new THREE.DirectionalLight(0xb8e0e8, 0.42);
+    fill.position.set(-80, 60, 40);
+    constructionLights.add(ambient, dir, fill);
+    scene.add(constructionLights);
+
+    const beachLights = new THREE.Group();
+    beachLights.name = "beachLights";
+    beachLights.visible = false;
+    const hemiLight = new THREE.HemisphereLight(0xa8cce0, 0xd8cbb0, 0.32);
+    const sunLight = new THREE.DirectionalLight(0xfff0e0, 1.05);
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.set(2048, 2048);
+    sunLight.shadow.bias = -0.0002;
+    sunLight.shadow.normalBias = 0.02;
+    sunLight.shadow.camera.near = 10;
+    sunLight.shadow.camera.far = 420;
+    sunLight.shadow.camera.left = -180;
+    sunLight.shadow.camera.right = 180;
+    sunLight.shadow.camera.top = 180;
+    sunLight.shadow.camera.bottom = -180;
+    const sunTarget = new THREE.Object3D();
+    scene.add(sunTarget);
+    sunLight.target = sunTarget;
+    const skyFill = new THREE.DirectionalLight(0xb8d4e8, 0.18);
+    skyFill.position.set(-90, 70, 60);
+    beachLights.add(hemiLight, sunLight, skyFill);
+    scene.add(beachLights);
+
+    const beachEnv = new THREE.Group();
+    beachEnv.name = "beachEnv";
+    beachEnv.visible = false;
+    scene.add(atmosphericSky.mesh);
+
+    const sandMat = new THREE.MeshStandardMaterial({
+      map: sandTexture,
+      color: 0xffffff,
+      roughness: 0.92,
+      metalness: 0.0,
+    });
+    const sand = new THREE.Mesh(new THREE.PlaneGeometry(680, 680), sandMat);
+    sand.position.z = -0.1;
+    sand.receiveShadow = true;
+    beachEnv.add(sand);
+
+    const oceanMat = new THREE.MeshPhysicalMaterial({
+      map: waterTexture,
+      color: 0xffffff,
+      roughness: 0.08,
+      metalness: 0.05,
+      clearcoat: 0.85,
+      clearcoatRoughness: 0.18,
+      reflectivity: 0.6,
+      transparent: true,
+      opacity: 0.94,
+    });
+    const ocean = new THREE.Mesh(new THREE.PlaneGeometry(960, 320), oceanMat);
+    ocean.position.set(0, -340, -0.14);
+    ocean.receiveShadow = true;
+    beachEnv.add(ocean);
+
+    scene.add(beachEnv);
+
+    const grid = new THREE.GridHelper(140, 28, 0x7eb8b0, 0xc4ddd8);
     grid.rotation.x = Math.PI / 2;
     grid.position.z = 0;
 
@@ -557,6 +1036,213 @@
       return "#8b9cb3";
     }
 
+    function woodFinishColor(part) {
+      const key = part.category || "__none__";
+      const finish = state.catalog.wood_finishes?.[key];
+      if (finish?.color) return finish.color;
+      return categoryColor(key);
+    }
+
+    function constructionColor(part) {
+      return categoryColor(part.category || "__none__");
+    }
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function materialsBlendLinear() {
+      const tr = state.anim.materialsTransition;
+      if (tr) return tr.progress ?? 0;
+      if (state.anim.materialsComplete) return 1;
+      return 0;
+    }
+
+    function materialsBlend() {
+      return easeInOutCubic(materialsBlendLinear());
+    }
+
+    function usesWoodMaterials() {
+      return materialsBlend() > 0;
+    }
+
+    function layoutBeachScene() {
+      const pivot = computeAnimCameraPivot();
+      beachEnv.position.set(pivot.x, pivot.y, 0);
+      sunTarget.position.set(pivot.x, pivot.y, 6);
+      sunLight.position.set(pivot.x + 130, pivot.y - 85, 62);
+      skyFill.position.set(pivot.x - 85, pivot.y + 75, 48);
+
+      const sunDir = new THREE.Vector3()
+        .subVectors(sunLight.position, sunTarget.position)
+        .normalize();
+      atmosphericSky.material.uniforms.sunDirection.value.copy(sunDir);
+    }
+
+    function updateBeachEnvironment() {
+      if (materialsBlend() <= 0) {
+        atmosphericSky.mesh.visible = false;
+        return;
+      }
+      atmosphericSky.mesh.visible = true;
+      atmosphericSky.mesh.position.copy(camera.position);
+    }
+
+    function applySceneLighting(blend) {
+      constructionLights.visible = blend < 1;
+      beachLights.visible = blend > 0;
+      ambient.intensity = 0.78 * (1 - blend);
+      dir.intensity = 0.88 * (1 - blend);
+      fill.intensity = 0.42 * (1 - blend);
+      hemiLight.intensity = 0.32 * blend;
+      sunLight.intensity = 1.05 * blend;
+      skyFill.intensity = 0.18 * blend;
+      renderer.toneMappingExposure = THREE.MathUtils.lerp(1.0, 0.92, blend);
+    }
+
+    function setAnimMeshShadows(enabled) {
+      for (const entry of state.animMeshesByObjRef.values()) {
+        entry.mesh.traverse((child) => {
+          if (!child.isMesh) return;
+          child.castShadow = enabled;
+          child.receiveShadow = enabled;
+        });
+      }
+    }
+
+    function syncBeachScene() {
+      const blend = state.mode === "animate" ? materialsBlend() : 0;
+      const beach = blend > 0;
+
+      beachEnv.visible = beach;
+      atmosphericSky.mesh.visible = beach;
+      beachLights.visible = beach;
+      constructionLights.visible = blend < 1;
+
+      sandMat.transparent = blend < 1;
+      sandMat.opacity = blend;
+      oceanMat.opacity = 0.94 * blend;
+      atmosphericSky.material.uniforms.opacity.value = blend;
+
+      setAnimMeshShadows(blend >= 0.55);
+      applySceneLighting(blend);
+
+      if (beach) layoutBeachScene();
+
+      if (blend <= 0) {
+        scene.background = constructionBg;
+        scene.fog = null;
+        return;
+      }
+
+      scene.background = constructionBg.clone().lerp(beachSkyFallback, blend);
+      if (blend >= 1) {
+        scene.background = beachSkyFallback;
+        scene.fog = beachFog;
+        beachFog.density = 0.0028;
+        return;
+      }
+
+      scene.fog = beachFog;
+      beachFog.density = 0.0028 * blend;
+    }
+
+    function applyAnimMeshStyle(entry, part) {
+      if (!entry?.mesh) return;
+      const blend = materialsBlend();
+      const from = new THREE.Color(constructionColor(part));
+      const to = new THREE.Color(woodFinishColor(part));
+      const color = from.lerp(to, blend);
+      const emissiveIntensity = THREE.MathUtils.lerp(0.12, 0.015, blend);
+      entry.mesh.traverse((child) => {
+        if (!child.isMesh) return;
+        const mat = child.material.clone();
+        mat.side = THREE.DoubleSide;
+        mat.color = color;
+        mat.emissive = color.clone();
+        mat.emissiveIntensity = emissiveIntensity;
+        if (blend >= 1 && mat.isMeshPhongMaterial) {
+          mat.shininess = 12;
+        }
+        mat.transparent = false;
+        mat.opacity = 1;
+        child.material = mat;
+      });
+    }
+
+    function refreshAnimMaterials() {
+      for (const part of state.catalog.parts) {
+        const entry = state.animMeshesByObjRef.get(part.obj_ref);
+        if (!entry?.mesh.visible) continue;
+        applyAnimMeshStyle(entry, part);
+      }
+    }
+
+    function prepareMaterialsPhase() {
+      state.anim.previewAllInPhase = true;
+      for (const part of state.catalog.parts) {
+        if (part.phase == null) continue;
+        landAnimMesh(part.obj_ref);
+      }
+    }
+
+    function beginMaterialsTransition() {
+      prepareMaterialsPhase();
+      const duration = phaseDurationMs(state.anim.phase);
+      state.anim.materialsTransition = {
+        duration,
+        elapsed: 0,
+        progress: 0,
+        lastTick: null,
+      };
+      state.anim.pauseUntil = Number.POSITIVE_INFINITY;
+      updatePhaseLabel();
+      syncBeachScene();
+      refreshAnimMaterials();
+      refreshUI({ animOnly: true });
+    }
+
+    function finishMaterialsTransition() {
+      state.anim.materialsTransition = null;
+      state.anim.materialsComplete = true;
+      syncBeachScene();
+      refreshAnimMaterials();
+      updatePhaseLabel();
+      if (state.anim.playing) stopPlay({ keepAudio: true });
+    }
+
+    function enterMaterialsPhase(instant = true) {
+      prepareMaterialsPhase();
+      state.anim.materialsTransition = null;
+      state.anim.materialsComplete = instant;
+      if (instant) {
+        syncBeachScene();
+        refreshAnimMaterials();
+      }
+      updatePhaseLabel();
+      refreshUI({ animOnly: true });
+    }
+
+    function tickMaterialsTransition(now) {
+      const tr = state.anim.materialsTransition;
+      if (state.mode !== "animate" || !tr) return;
+
+      if (state.anim.playing) {
+        if (tr.lastTick == null) tr.lastTick = now;
+        tr.elapsed = Math.min(tr.duration, tr.elapsed + (now - tr.lastTick));
+        tr.lastTick = now;
+        tr.progress = tr.elapsed / tr.duration;
+      } else {
+        tr.lastTick = null;
+      }
+
+      syncBeachScene();
+      refreshAnimMaterials();
+      updatePhaseLabel();
+
+      if (tr.progress >= 1) finishMaterialsTransition();
+    }
+
     function removeOutline(mesh) {
       const outline = mesh.userData.outline;
       if (!outline) return;
@@ -592,6 +1278,7 @@
           mat.opacity =
             part.notes?.startsWith("demo:plane") ||
             part.notes?.startsWith("demo:roof-plane") ||
+            part.notes?.startsWith("demo:stairs-guide") ||
             part.notes?.startsWith("demo:roof-subtract")
               ? 0.45
               : 0.85;
@@ -599,6 +1286,10 @@
             mat.color = new THREE.Color("#38bdf8");
             mat.emissive = new THREE.Color("#0ea5e9");
             mat.emissiveIntensity = isSelected ? 0.5 : 0.25;
+          } else if (part.notes?.startsWith("demo:stairs-guide")) {
+            mat.color = new THREE.Color("#c084fc");
+            mat.emissive = new THREE.Color("#a855f7");
+            mat.emissiveIntensity = isSelected ? 0.5 : 0.28;
           } else if (part.notes?.startsWith("demo:roof-subtract")) {
             mat.color = new THREE.Color("#f97316");
             mat.emissive = new THREE.Color("#ea580c");
@@ -687,6 +1378,8 @@
       if (!entry) return;
       entry.mesh.position.copy(entry.home);
       entry.mesh.visible = true;
+      const part = state.partsByObjRef.get(objRef);
+      if (part) applyAnimMeshStyle(entry, part);
     }
 
     function teleportAnimMeshToSky(objRef) {
@@ -694,6 +1387,8 @@
       if (!entry) return;
       entry.mesh.position.copy(entry.sky);
       entry.mesh.visible = true;
+      const part = state.partsByObjRef.get(objRef);
+      if (part) applyAnimMeshStyle(entry, part);
     }
 
     function syncAnimPreview() {
@@ -711,6 +1406,8 @@
           entry.mesh.visible = false;
         }
       }
+      refreshAnimMaterials();
+      syncBeachScene();
     }
 
     function countAnimVisible() {
@@ -735,14 +1432,17 @@
         state.phasePartsMap.get(part.phase).push(part);
       }
       for (const list of state.phasePartsMap.values()) {
-        list.sort((a, b) =>
-          a.obj_ref.localeCompare(b.obj_ref, undefined, { numeric: true })
-        );
+        list.sort((a, b) => {
+          const keyA = a.id || a.obj_ref;
+          const keyB = b.id || b.obj_ref;
+          return keyA.localeCompare(keyB, undefined, { numeric: true });
+        });
       }
       state.hasPhases = state.phasePartsMap.size > 0;
       state.maxPhase = state.hasPhases
-        ? Math.max(...state.phasePartsMap.keys())
+        ? Math.max(...state.phasePartsMap.keys(), ...(state.catalog.phases || []).map((p) => p.id))
         : 0;
+      state.materialsPhaseId = (state.catalog.phases || []).find((p) => p.animation === "materials")?.id ?? null;
     }
 
     function phaseDef(phaseId) {
@@ -751,6 +1451,9 @@
 
     function animationPartState(part) {
       if (part.phase == null) return "hidden";
+      if (state.materialsPhaseId != null && state.anim.phase >= state.materialsPhaseId) {
+        return "landed";
+      }
       if (part.phase < state.anim.phase) return "landed";
       if (part.phase > state.anim.phase) return "hidden";
 
@@ -764,20 +1467,34 @@
     }
 
     function resetAnimation() {
-      stopPlay();
+      stopPlay({ keepAudio: false });
       state.anim.phase = 0;
       state.anim.step = 0;
       state.anim.falling = null;
       state.anim.pauseUntil = 0;
       state.anim.previewAllInPhase = false;
+      state.anim.materialsTransition = null;
+      state.anim.materialsComplete = false;
       els.phaseSlider.value = "0";
       hideAllAnimMeshes();
+      syncBeachScene();
       updatePhaseLabel();
       refreshUI();
     }
 
     function startNextFall() {
       if (!state.anim.playing) return;
+
+      const def = phaseDef(state.anim.phase) || {};
+      if (def.animation === "materials") {
+        if (state.anim.materialsTransition) return;
+        if (state.anim.materialsComplete) {
+          stopPlay({ keepAudio: true });
+          return;
+        }
+        beginMaterialsTransition();
+        return;
+      }
 
       const parts = state.phasePartsMap.get(state.anim.phase) || [];
       if (state.anim.step >= parts.length) {
@@ -800,7 +1517,6 @@
         return;
       }
 
-      const def = phaseDef(state.anim.phase) || {};
       const animType = def.animation || "instant";
 
       if (animType === "fall") {
@@ -825,6 +1541,7 @@
 
     function tickAnimation(now) {
       if (state.mode !== "animate" || !state.anim.playing) return;
+      if (state.anim.materialsTransition) return;
 
       if (state.anim.falling) {
         const f = state.anim.falling;
@@ -868,6 +1585,7 @@
     function refreshUI(options = {}) {
       if (state.mode === "animate") {
         if (!options.animOnly) syncAnimPreview();
+        syncBeachScene();
         updateStats();
         if (!options.animOnly) renderPartsList();
         updateSelectionPanel();
@@ -964,8 +1682,11 @@
           (inCategory ? " category-match" : "") +
           (!visible ? " hidden-part" : "") +
           (state.selectedCategory && !inCategory ? " dimmed" : "");
+        const swatchColor = state.mode === "animate" && usesWoodMaterials()
+          ? woodFinishColor(part)
+          : partColor(part);
         item.innerHTML = `
-          <span class="swatch" style="background:${partColor(part)}"></span>
+          <span class="swatch" style="background:${swatchColor}"></span>
           <span>
             <div class="part-id">${partLabel(part)}</div>
             <div class="part-meta">${meta}</div>
@@ -1021,6 +1742,7 @@
         controls.enabled = true;
         modelEnv.visible = true;
         animEnv.visible = false;
+        animationAudio.stop();
         restoreModelCamera();
       }
       refreshUI();
@@ -1034,6 +1756,16 @@
       }
       const def = phaseDef(phase);
       const label = def?.label || state.catalog.phase_labels?.[String(phase)] || `Fase ${phase}`;
+      if (phase === state.materialsPhaseId) {
+        const total = state.catalog.parts.filter((p) => p.phase != null).length;
+        if (state.anim.materialsTransition) {
+          const pct = Math.round(materialsBlend() * 100);
+          els.phaseLabel.textContent = `${label} · ${pct}% · materiales y playa`;
+          return;
+        }
+        els.phaseLabel.textContent = `${label} · ${total} piezas · materiales reales`;
+        return;
+      }
       const parts = state.phasePartsMap.get(phase) || [];
       if (state.mode === "animate" && state.anim.playing && parts.length) {
         const current = Math.min(
@@ -1055,6 +1787,7 @@
       els.phaseSlider.max = String(state.maxPhase);
       els.phaseSlider.disabled = !state.hasPhases;
       els.btnPlay.disabled = !state.hasPhases;
+      animationAudio.init();
 
       for (const part of state.catalog.parts) {
         state.partsByObjRef.set(part.obj_ref, part);
@@ -1095,6 +1828,7 @@
       }
 
       buildAnimEnvironment();
+      layoutBeachScene();
       buildCategoryCounts();
       els.loading.style.display = "none";
       resize();
@@ -1105,10 +1839,15 @@
       updateVisibility();
     }
 
-    function stopPlay() {
+    function stopPlay(options = {}) {
+      const onMaterialsPhase = state.materialsPhaseId != null
+        && state.anim.phase >= state.materialsPhaseId;
+      const keepAudio = options.keepAudio ?? onMaterialsPhase;
+
       state.anim.playing = false;
       state.playing = false;
       els.btnPlay.textContent = "▶ Reproducir";
+      if (!keepAudio) animationAudio.stop();
     }
 
     function startPlay() {
@@ -1121,6 +1860,7 @@
       state.playing = true;
       state.anim.previewAllInPhase = false;
       els.btnPlay.textContent = "⏸ Pausar";
+      animationAudio.start();
       if (state.anim.step === 0 && !state.anim.falling && state.anim.phase === 0) {
         hideAllAnimMeshes();
       }
@@ -1132,12 +1872,26 @@
     els.btnAnimate.onclick = () => { setMode("animate"); };
     els.phaseSlider.oninput = () => {
       if (state.anim.playing) return;
-      state.anim.phase = Number(els.phaseSlider.value);
+      const phase = Number(els.phaseSlider.value);
+      state.anim.phase = phase;
       state.anim.step = 0;
       state.anim.falling = null;
       state.anim.previewAllInPhase = true;
+      state.anim.materialsTransition = null;
+      state.anim.materialsComplete = false;
       hideAllAnimMeshes();
-      syncAnimPreview();
+      if (state.materialsPhaseId != null && phase >= state.materialsPhaseId) {
+        enterMaterialsPhase(true);
+      } else {
+        syncAnimPreview();
+      }
+      if (
+        state.materialsPhaseId != null
+        && phase >= state.materialsPhaseId
+        && !animationAudio.isActive()
+      ) {
+        animationAudio.start();
+      }
       updatePhaseLabel();
       refreshUI({ animOnly: true });
     };
@@ -1155,6 +1909,8 @@
       lastFrameTime = now;
       tickAnimCamera(delta);
       tickAnimation(now);
+      tickMaterialsTransition(now);
+      updateBeachEnvironment();
       if (state.mode === "model") controls.update();
       renderer.render(scene, camera);
     }

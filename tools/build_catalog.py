@@ -183,6 +183,7 @@ def build_catalog() -> dict:
         "material_colors": material_colors,
         "phases": categories_meta.get("phases", []),
         "categories": categories_meta.get("categories", []),
+        "wood_finishes": categories_meta.get("wood_finishes", {}),
         "phase_labels": phase_labels,
         "category_colors": category_colors,
         "summary": {
